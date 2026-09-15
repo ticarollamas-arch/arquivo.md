@@ -82,6 +82,7 @@
     .hero { position:relative; width:100%; min-height:90vh; display:flex; align-items:flex-end; overflow:hidden; background:#08131f; }
     .hero .scene { position:absolute; inset:-5%; animation:ken 34s ease-in-out infinite alternate; }
     @keyframes ken { 0%{ transform:scale(1) translate(0,0);} 100%{ transform:scale(1.09) translate(-1%,-1%);} }
+    .hero .hero-photo { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
     .hero .layer { position:absolute; inset:0; width:100%; height:100%; will-change:transform; }
     .hero .layer svg { position:absolute; inset:0; width:100%; height:100%; }
     .hero .sky { background:linear-gradient(180deg,#050f1a 0%,#0b1a2b 32%,#34506e 72%,#8299ad 100%); background-size:100% 220%; animation:skyshift 26s ease-in-out infinite alternate; }
@@ -128,8 +129,10 @@
     .seasons { display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--cloud-veil); border:1px solid var(--cloud-veil); }
     .season-card { background:var(--paper-white); text-align:center; cursor:pointer; transition:background .25s ease; }
     .season-card:hover { background:#fbfbfb; }
-    .season-card .art { aspect-ratio:4/5; display:flex; align-items:center; justify-content:center; transition:transform .3s ease; }
-    .season-card:hover .art { transform:translateY(-6px); }
+    .season-card .art { aspect-ratio:4/5; overflow:hidden; position:relative; }
+    .season-card .art img { width:100%; height:100%; object-fit:cover; transition:transform .5s ease; }
+    .season-card:hover .art img { transform:scale(1.06); }
+    .season-card .art .badge { position:absolute; left:12px; top:12px; background:rgba(0,14,31,.72); color:#fff; font-size:11px; font-weight:700; letter-spacing:1px; text-transform:uppercase; padding:5px 12px; border-radius:var(--radius-pill); }
     .season-card h3 { font-weight:900; font-size:20px; margin:0 0 4px; }
     .season-card p { color:var(--slate-gray); font-size:13px; margin:0 0 16px; padding:0 12px; }
     .season-card .foot { padding:0 16px 20px; }
@@ -138,7 +141,8 @@
     /* Editor's choice banner */
     .feature { background:var(--midcurrent-navy); color:var(--paper-white); }
     .feature .inner { display:grid; grid-template-columns:1.1fr 1fr; align-items:center; gap:48px; }
-    .feature .art { aspect-ratio:16/11; background:var(--morning-mist); display:flex; align-items:center; justify-content:center; }
+    .feature .art { aspect-ratio:16/11; background:var(--morning-mist); overflow:hidden; }
+    .feature .art img { width:100%; height:100%; object-fit:cover; }
     .feature .badge { display:inline-block; background:var(--deep-cobalt); color:#fff; font-size:11px; font-weight:700; letter-spacing:1px; text-transform:uppercase; padding:6px 14px; border-radius:var(--radius-pill); }
     .feature h2 { font-weight:900; font-size:38px; line-height:1.1; margin:16px 0 12px; }
     .feature p { color:rgba(255,255,255,.78); margin:0 0 20px; }
@@ -156,8 +160,9 @@
     @media (max-width:720px){ .grid{ grid-template-columns:repeat(2,1fr);} }
     @media (max-width:460px){ .grid{ grid-template-columns:1fr;} }
     .product { background:var(--paper-white); padding:16px; display:flex; flex-direction:column; position:relative; }
-    .product .photo { aspect-ratio:1/1; display:flex; align-items:center; justify-content:center; padding:18px; transition:transform .3s ease; }
-    .product:hover .photo { transform:scale(1.05); }
+    .product .photo { aspect-ratio:1/1; overflow:hidden; background:#fff; display:block; }
+    .product .photo img { width:100%; height:100%; object-fit:cover; transition:transform .45s ease; }
+    .product:hover .photo img { transform:scale(1.06); }
     .product .rank { position:absolute; top:16px; left:16px; background:var(--midcurrent-navy); color:#fff; font-size:11px; font-weight:700; padding:4px 8px; border-radius:var(--radius-pill); }
     .product .season-tag { align-self:flex-start; font-size:11px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:var(--slate-gray); }
     .product .brand { font-size:11px; color:var(--graphite); margin-top:12px; }
@@ -276,23 +281,7 @@
     <!-- Hero — living animated scene -->
     <section class="hero" style="padding:0;">
       <div class="scene" aria-hidden="true">
-        <div class="layer sky"></div>
-        <div class="layer" data-depth="6"><div class="moon"></div></div>
-        <div class="layer stars" id="stars" data-depth="4"></div>
-        <div class="layer" data-depth="10">
-          <svg class="cloud c1" width="320" height="80" viewBox="0 0 320 80" fill="currentColor"><ellipse cx="80" cy="50" rx="70" ry="24"/><ellipse cx="150" cy="40" rx="80" ry="30"/><ellipse cx="230" cy="52" rx="70" ry="22"/></svg>
-          <svg class="cloud c2" width="260" height="70" viewBox="0 0 260 70" fill="currentColor"><ellipse cx="70" cy="44" rx="60" ry="20"/><ellipse cx="140" cy="36" rx="70" ry="26"/><ellipse cx="200" cy="46" rx="56" ry="18"/></svg>
-        </div>
-        <!-- far ridge -->
-        <div class="layer" data-depth="16"><svg viewBox="0 0 1440 820" preserveAspectRatio="xMidYMax slice"><path d="M0 560 L240 380 L430 500 L640 320 L860 540 L1040 400 L1260 560 L1440 460 L1440 820 L0 820 Z" fill="#1a3149"/></svg></div>
-        <!-- mid ridge -->
-        <div class="layer" data-depth="28"><svg viewBox="0 0 1440 820" preserveAspectRatio="xMidYMax slice"><path d="M0 650 L200 560 L420 640 L640 540 L880 650 L1120 580 L1440 660 L1440 820 L0 820 Z" fill="#101f30"/></svg></div>
-        <div class="layer fog"></div>
-        <!-- near ridge + tiny tent -->
-        <div class="layer" data-depth="44"><svg viewBox="0 0 1440 820" preserveAspectRatio="xMidYMax slice">
-          <path d="M0 740 L320 690 L620 740 L940 700 L1440 750 L1440 820 L0 820 Z" fill="#060e18"/>
-          <g transform="translate(700 686)"><path d="M0 40 L22 0 L44 40 Z" fill="#0b1522" stroke="#22344a" stroke-width="1.5"/><path d="M22 0 L22 40" stroke="#22344a" stroke-width="1.5"/></g>
-        </svg></div>
+        <img class="hero-photo" src="images/hero.jpg" alt="" />
         <canvas class="embers" id="embers"></canvas>
         <div class="scrim"></div>
       </div>
@@ -327,19 +316,19 @@
       </div>
       <div class="seasons reveal" id="seasonCards">
         <div class="season-card" data-season="spring">
-          <div class="art"><svg width="88" height="88" viewBox="0 0 24 24" fill="none" stroke="#000e1f" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v6m0 0 3-3m-3 3L9 5 M6 14a6 6 0 0 1 12 0c0 4-6 8-6 8s-6-4-6-8Z"/></svg></div>
+          <div class="art"><span class="badge">Spring</span><img src="images/seasons/spring.jpg" alt="Spring camping" loading="lazy"></div>
           <div class="foot"><h3>Spring</h3><p>Rain shells, lightweight tents & trail-ready layers</p><span class="btn btn-ghost">Shop Spring</span></div>
         </div>
         <div class="season-card" data-season="summer">
-          <div class="art"><svg width="88" height="88" viewBox="0 0 24 24" fill="none" stroke="#000e1f" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v2m0 12v2m8-8h-2M6 12H4m13.7-5.7-1.4 1.4M7.7 16.3l-1.4 1.4m11.4 0-1.4-1.4M7.7 7.7 6.3 6.3M12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8Z"/></svg></div>
+          <div class="art"><span class="badge">Summer</span><img src="images/seasons/summer.jpg" alt="Summer camping" loading="lazy"></div>
           <div class="foot"><h3>Summer</h3><p>Breathable sleep systems, sun protection & hydration</p><span class="btn btn-ghost">Shop Summer</span></div>
         </div>
         <div class="season-card" data-season="fall">
-          <div class="art"><svg width="88" height="88" viewBox="0 0 24 24" fill="none" stroke="#000e1f" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c3 4 3 7 0 10-3-3-3-6 0-10Z M8 21c2-3 5-4 8-4"/></svg></div>
+          <div class="art"><span class="badge">Fall</span><img src="images/seasons/fall.jpg" alt="Fall camping" loading="lazy"></div>
           <div class="foot"><h3>Fall</h3><p>Insulated layers, camp stoves & cozy 20°F bags</p><span class="btn btn-ghost">Shop Fall</span></div>
         </div>
         <div class="season-card" data-season="winter">
-          <div class="art"><svg width="88" height="88" viewBox="0 0 24 24" fill="none" stroke="#000e1f" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M4 6l16 12M20 6 4 18M2 12h20"/></svg></div>
+          <div class="art"><span class="badge">Winter</span><img src="images/seasons/winter.jpg" alt="Winter camping" loading="lazy"></div>
           <div class="foot"><h3>Winter</h3><p>4-season tents, 0°F bags & serious insulation</p><span class="btn btn-ghost">Shop Winter</span></div>
         </div>
       </div>
@@ -350,7 +339,7 @@
       <div class="wrap">
         <div class="inner reveal">
           <div class="art">
-            <svg width="140" height="140" viewBox="0 0 24 24" fill="none" stroke="#000e1f" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20 12 4l9 16Z"/><path d="M12 4v16M7 20l5-6 5 6"/></svg>
+            <img src="images/seasons/winter.jpg" alt="4-season tent in the snow" loading="lazy">
           </div>
           <div>
             <span class="badge">Editor's Choice · Winter</span>
@@ -373,7 +362,7 @@
       <div class="filters reveal" id="filters"><button class="chip" data-f="all" aria-pressed="true">All seasons</button><button class="chip" data-f="spring" aria-pressed="false">Spring</button><button class="chip" data-f="summer" aria-pressed="false">Summer</button><button class="chip" data-f="fall" aria-pressed="false">Fall</button><button class="chip" data-f="winter" aria-pressed="false">Winter</button></div>
       <div class="grid reveal" id="productGrid">
         <article class="product" data-season="spring">
-          <div class="photo"><svg width="72" height="72" viewBox="0 0 24 24" fill="none" stroke="#000e1f" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20 12 5l9 15Z"/><path d="M12 5v15M7 20l5-6 5 6"/></svg></div>
+          <div class="photo"><img src="images/products/tent.jpg" alt="2-Person Lightweight Backpacking Tent" loading="lazy"></div>
           <span class="season-tag">spring · Shelter</span>
           <div class="brand">Amazon pick</div>
           <div class="name">2-Person Lightweight Backpacking Tent</div>
@@ -382,7 +371,7 @@
           <a class="btn btn-navy" href="#" rel="sponsored nofollow noopener" target="_blank">View on Amazon</a>
         </article>
         <article class="product" data-season="spring">
-          <div class="photo"><svg width="72" height="72" viewBox="0 0 24 24" fill="none" stroke="#000e1f" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20 12 5l9 15Z"/><path d="M12 5v15M7 20l5-6 5 6"/></svg></div>
+          <div class="photo"><img src="images/products/rain.jpg" alt="Packable Waterproof Rain Jacket" loading="lazy"></div>
           <span class="season-tag">spring · Apparel</span>
           <div class="brand">Amazon pick</div>
           <div class="name">Packable Waterproof Rain Jacket</div>
@@ -391,7 +380,7 @@
           <a class="btn btn-navy" href="#" rel="sponsored nofollow noopener" target="_blank">View on Amazon</a>
         </article>
         <article class="product" data-season="spring">
-          <div class="photo"><svg width="72" height="72" viewBox="0 0 24 24" fill="none" stroke="#000e1f" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20 12 5l9 15Z"/><path d="M12 5v15M7 20l5-6 5 6"/></svg></div>
+          <div class="photo"><img src="images/products/sleep.jpg" alt="3-Season Down Sleeping Bag (30°F)" loading="lazy"></div>
           <span class="season-tag">spring · Sleep</span>
           <div class="brand">Amazon pick</div>
           <div class="name">3-Season Down Sleeping Bag (30°F)</div>
@@ -400,7 +389,7 @@
           <a class="btn btn-navy" href="#" rel="sponsored nofollow noopener" target="_blank">View on Amazon</a>
         </article>
         <article class="product" data-season="spring">
-          <div class="photo"><svg width="72" height="72" viewBox="0 0 24 24" fill="none" stroke="#000e1f" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20 12 5l9 15Z"/><path d="M12 5v15M7 20l5-6 5 6"/></svg></div>
+          <div class="photo"><img src="images/products/footwear.jpg" alt="Waterproof Hiking Boots" loading="lazy"></div>
           <span class="season-tag">spring · Footwear</span>
           <div class="brand">Amazon pick</div>
           <div class="name">Waterproof Hiking Boots</div>
@@ -409,7 +398,7 @@
           <a class="btn btn-navy" href="#" rel="sponsored nofollow noopener" target="_blank">View on Amazon</a>
         </article>
         <article class="product" data-season="spring">
-          <div class="photo"><svg width="72" height="72" viewBox="0 0 24 24" fill="none" stroke="#000e1f" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20 12 5l9 15Z"/><path d="M12 5v15M7 20l5-6 5 6"/></svg></div>
+          <div class="photo"><img src="images/products/backpack.jpg" alt="40L Ventilated Hiking Backpack" loading="lazy"></div>
           <span class="season-tag">spring · Carry</span>
           <div class="brand">Amazon pick</div>
           <div class="name">40L Ventilated Hiking Backpack</div>
@@ -418,7 +407,7 @@
           <a class="btn btn-navy" href="#" rel="sponsored nofollow noopener" target="_blank">View on Amazon</a>
         </article>
         <article class="product" data-season="spring">
-          <div class="photo"><svg width="72" height="72" viewBox="0 0 24 24" fill="none" stroke="#000e1f" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20 12 5l9 15Z"/><path d="M12 5v15M7 20l5-6 5 6"/></svg></div>
+          <div class="photo"><img src="images/products/tools.jpg" alt="Compact Camp Trowel & Kit" loading="lazy"></div>
           <span class="season-tag">spring · Tools</span>
           <div class="brand">Amazon pick</div>
           <div class="name">Compact Camp Trowel & Kit</div>
@@ -427,7 +416,7 @@
           <a class="btn btn-navy" href="#" rel="sponsored nofollow noopener" target="_blank">View on Amazon</a>
         </article>
         <article class="product" data-season="summer">
-          <div class="photo"><svg width="72" height="72" viewBox="0 0 24 24" fill="none" stroke="#000e1f" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20 12 5l9 15Z"/><path d="M12 5v15M7 20l5-6 5 6"/></svg></div>
+          <div class="photo"><img src="images/products/sleep.jpg" alt="Breathable 50°F Quilt" loading="lazy"></div>
           <span class="season-tag">summer · Sleep</span>
           <div class="brand">Amazon pick</div>
           <div class="name">Breathable 50°F Quilt</div>
@@ -436,7 +425,7 @@
           <a class="btn btn-navy" href="#" rel="sponsored nofollow noopener" target="_blank">View on Amazon</a>
         </article>
         <article class="product" data-season="summer">
-          <div class="photo"><svg width="72" height="72" viewBox="0 0 24 24" fill="none" stroke="#000e1f" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20 12 5l9 15Z"/><path d="M12 5v15M7 20l5-6 5 6"/></svg></div>
+          <div class="photo"><img src="images/products/tent.jpg" alt="Ultralight 1P Mesh Tent" loading="lazy"></div>
           <span class="season-tag">summer · Shelter</span>
           <div class="brand">Amazon pick</div>
           <div class="name">Ultralight 1P Mesh Tent</div>
@@ -445,7 +434,7 @@
           <a class="btn btn-navy" href="#" rel="sponsored nofollow noopener" target="_blank">View on Amazon</a>
         </article>
         <article class="product" data-season="summer">
-          <div class="photo"><svg width="72" height="72" viewBox="0 0 24 24" fill="none" stroke="#000e1f" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20 12 5l9 15Z"/><path d="M12 5v15M7 20l5-6 5 6"/></svg></div>
+          <div class="photo"><img src="images/products/hydration.jpg" alt="2L Hydration Reservoir" loading="lazy"></div>
           <span class="season-tag">summer · Hydration</span>
           <div class="brand">Amazon pick</div>
           <div class="name">2L Hydration Reservoir</div>
@@ -454,7 +443,7 @@
           <a class="btn btn-navy" href="#" rel="sponsored nofollow noopener" target="_blank">View on Amazon</a>
         </article>
         <article class="product" data-season="summer">
-          <div class="photo"><svg width="72" height="72" viewBox="0 0 24 24" fill="none" stroke="#000e1f" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20 12 5l9 15Z"/><path d="M12 5v15M7 20l5-6 5 6"/></svg></div>
+          <div class="photo"><img src="images/products/sun.jpg" alt="UPF 50 Sun Hoodie" loading="lazy"></div>
           <span class="season-tag">summer · Apparel</span>
           <div class="brand">Amazon pick</div>
           <div class="name">UPF 50 Sun Hoodie</div>
@@ -463,7 +452,7 @@
           <a class="btn btn-navy" href="#" rel="sponsored nofollow noopener" target="_blank">View on Amazon</a>
         </article>
         <article class="product" data-season="summer">
-          <div class="photo"><svg width="72" height="72" viewBox="0 0 24 24" fill="none" stroke="#000e1f" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20 12 5l9 15Z"/><path d="M12 5v15M7 20l5-6 5 6"/></svg></div>
+          <div class="photo"><img src="images/products/comfort.jpg" alt="Inflatable Sleeping Pad (R2.0)" loading="lazy"></div>
           <span class="season-tag">summer · Comfort</span>
           <div class="brand">Amazon pick</div>
           <div class="name">Inflatable Sleeping Pad (R2.0)</div>
@@ -472,7 +461,7 @@
           <a class="btn btn-navy" href="#" rel="sponsored nofollow noopener" target="_blank">View on Amazon</a>
         </article>
         <article class="product" data-season="summer">
-          <div class="photo"><svg width="72" height="72" viewBox="0 0 24 24" fill="none" stroke="#000e1f" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20 12 5l9 15Z"/><path d="M12 5v15M7 20l5-6 5 6"/></svg></div>
+          <div class="photo"><img src="images/products/lantern.jpg" alt="Rechargeable Camp Lantern" loading="lazy"></div>
           <span class="season-tag">summer · Lighting</span>
           <div class="brand">Amazon pick</div>
           <div class="name">Rechargeable Camp Lantern</div>
@@ -481,7 +470,7 @@
           <a class="btn btn-navy" href="#" rel="sponsored nofollow noopener" target="_blank">View on Amazon</a>
         </article>
         <article class="product" data-season="fall">
-          <div class="photo"><svg width="72" height="72" viewBox="0 0 24 24" fill="none" stroke="#000e1f" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20 12 5l9 15Z"/><path d="M12 5v15M7 20l5-6 5 6"/></svg></div>
+          <div class="photo"><img src="images/products/sleep.jpg" alt="20°F Insulated Mummy Bag" loading="lazy"></div>
           <span class="season-tag">fall · Sleep</span>
           <div class="brand">Amazon pick</div>
           <div class="name">20°F Insulated Mummy Bag</div>
@@ -490,7 +479,7 @@
           <a class="btn btn-navy" href="#" rel="sponsored nofollow noopener" target="_blank">View on Amazon</a>
         </article>
         <article class="product" data-season="fall">
-          <div class="photo"><svg width="72" height="72" viewBox="0 0 24 24" fill="none" stroke="#000e1f" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20 12 5l9 15Z"/><path d="M12 5v15M7 20l5-6 5 6"/></svg></div>
+          <div class="photo"><img src="images/products/backpack.jpg" alt="Compact Backpacking Stove" loading="lazy"></div>
           <span class="season-tag">fall · Cook</span>
           <div class="brand">Amazon pick</div>
           <div class="name">Compact Backpacking Stove</div>
@@ -499,7 +488,7 @@
           <a class="btn btn-navy" href="#" rel="sponsored nofollow noopener" target="_blank">View on Amazon</a>
         </article>
         <article class="product" data-season="fall">
-          <div class="photo"><svg width="72" height="72" viewBox="0 0 24 24" fill="none" stroke="#000e1f" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20 12 5l9 15Z"/><path d="M12 5v15M7 20l5-6 5 6"/></svg></div>
+          <div class="photo"><img src="images/products/down.jpg" alt="Packable Down Insulated Jacket" loading="lazy"></div>
           <span class="season-tag">fall · Apparel</span>
           <div class="brand">Amazon pick</div>
           <div class="name">Packable Down Insulated Jacket</div>
@@ -508,7 +497,7 @@
           <a class="btn btn-navy" href="#" rel="sponsored nofollow noopener" target="_blank">View on Amazon</a>
         </article>
         <article class="product" data-season="fall">
-          <div class="photo"><svg width="72" height="72" viewBox="0 0 24 24" fill="none" stroke="#000e1f" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20 12 5l9 15Z"/><path d="M12 5v15M7 20l5-6 5 6"/></svg></div>
+          <div class="photo"><img src="images/products/comfort.jpg" alt="Insulated Sleeping Pad (R4.2)" loading="lazy"></div>
           <span class="season-tag">fall · Comfort</span>
           <div class="brand">Amazon pick</div>
           <div class="name">Insulated Sleeping Pad (R4.2)</div>
@@ -517,7 +506,7 @@
           <a class="btn btn-navy" href="#" rel="sponsored nofollow noopener" target="_blank">View on Amazon</a>
         </article>
         <article class="product" data-season="fall">
-          <div class="photo"><svg width="72" height="72" viewBox="0 0 24 24" fill="none" stroke="#000e1f" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20 12 5l9 15Z"/><path d="M12 5v15M7 20l5-6 5 6"/></svg></div>
+          <div class="photo"><img src="images/products/headlamp.jpg" alt="300-Lumen Rechargeable Headlamp" loading="lazy"></div>
           <span class="season-tag">fall · Lighting</span>
           <div class="brand">Amazon pick</div>
           <div class="name">300-Lumen Rechargeable Headlamp</div>
@@ -526,7 +515,7 @@
           <a class="btn btn-navy" href="#" rel="sponsored nofollow noopener" target="_blank">View on Amazon</a>
         </article>
         <article class="product" data-season="fall">
-          <div class="photo"><svg width="72" height="72" viewBox="0 0 24 24" fill="none" stroke="#000e1f" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20 12 5l9 15Z"/><path d="M12 5v15M7 20l5-6 5 6"/></svg></div>
+          <div class="photo"><img src="images/products/stove.jpg" alt="2-Pot Anodized Cook Set" loading="lazy"></div>
           <span class="season-tag">fall · Cook</span>
           <div class="brand">Amazon pick</div>
           <div class="name">2-Pot Anodized Cook Set</div>
@@ -535,7 +524,7 @@
           <a class="btn btn-navy" href="#" rel="sponsored nofollow noopener" target="_blank">View on Amazon</a>
         </article>
         <article class="product" data-season="winter">
-          <div class="photo"><svg width="72" height="72" viewBox="0 0 24 24" fill="none" stroke="#000e1f" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20 12 5l9 15Z"/><path d="M12 5v15M7 20l5-6 5 6"/></svg></div>
+          <div class="photo"><img src="images/products/tent.jpg" alt="4-Season Mountaineering Tent" loading="lazy"></div>
           <span class="season-tag">winter · Shelter</span>
           <div class="brand">Amazon pick</div>
           <div class="name">4-Season Mountaineering Tent</div>
@@ -544,7 +533,7 @@
           <a class="btn btn-navy" href="#" rel="sponsored nofollow noopener" target="_blank">View on Amazon</a>
         </article>
         <article class="product" data-season="winter">
-          <div class="photo"><svg width="72" height="72" viewBox="0 0 24 24" fill="none" stroke="#000e1f" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20 12 5l9 15Z"/><path d="M12 5v15M7 20l5-6 5 6"/></svg></div>
+          <div class="photo"><img src="images/products/sleep.jpg" alt="0°F Expedition Down Bag" loading="lazy"></div>
           <span class="season-tag">winter · Sleep</span>
           <div class="brand">Amazon pick</div>
           <div class="name">0°F Expedition Down Bag</div>
@@ -553,7 +542,7 @@
           <a class="btn btn-navy" href="#" rel="sponsored nofollow noopener" target="_blank">View on Amazon</a>
         </article>
         <article class="product" data-season="winter">
-          <div class="photo"><svg width="72" height="72" viewBox="0 0 24 24" fill="none" stroke="#000e1f" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20 12 5l9 15Z"/><path d="M12 5v15M7 20l5-6 5 6"/></svg></div>
+          <div class="photo"><img src="images/products/comfort.jpg" alt="4-Season Insulated Pad (R6.5)" loading="lazy"></div>
           <span class="season-tag">winter · Comfort</span>
           <div class="brand">Amazon pick</div>
           <div class="name">4-Season Insulated Pad (R6.5)</div>
@@ -562,7 +551,7 @@
           <a class="btn btn-navy" href="#" rel="sponsored nofollow noopener" target="_blank">View on Amazon</a>
         </article>
         <article class="product" data-season="winter">
-          <div class="photo"><svg width="72" height="72" viewBox="0 0 24 24" fill="none" stroke="#000e1f" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20 12 5l9 15Z"/><path d="M12 5v15M7 20l5-6 5 6"/></svg></div>
+          <div class="photo"><img src="images/products/down.jpg" alt="800-Fill Expedition Parka" loading="lazy"></div>
           <span class="season-tag">winter · Apparel</span>
           <div class="brand">Amazon pick</div>
           <div class="name">800-Fill Expedition Parka</div>
@@ -571,7 +560,7 @@
           <a class="btn btn-navy" href="#" rel="sponsored nofollow noopener" target="_blank">View on Amazon</a>
         </article>
         <article class="product" data-season="winter">
-          <div class="photo"><svg width="72" height="72" viewBox="0 0 24 24" fill="none" stroke="#000e1f" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20 12 5l9 15Z"/><path d="M12 5v15M7 20l5-6 5 6"/></svg></div>
+          <div class="photo"><img src="images/products/traction.jpg" alt="Trail Crampons / Ice Cleats" loading="lazy"></div>
           <span class="season-tag">winter · Traction</span>
           <div class="brand">Amazon pick</div>
           <div class="name">Trail Crampons / Ice Cleats</div>
@@ -580,7 +569,7 @@
           <a class="btn btn-navy" href="#" rel="sponsored nofollow noopener" target="_blank">View on Amazon</a>
         </article>
         <article class="product" data-season="winter">
-          <div class="photo"><svg width="72" height="72" viewBox="0 0 24 24" fill="none" stroke="#000e1f" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20 12 5l9 15Z"/><path d="M12 5v15M7 20l5-6 5 6"/></svg></div>
+          <div class="photo"><img src="images/products/stove.jpg" alt="4-Season Liquid-Fuel Stove" loading="lazy"></div>
           <span class="season-tag">winter · Cook</span>
           <div class="brand">Amazon pick</div>
           <div class="name">4-Season Liquid-Fuel Stove</div>
@@ -774,11 +763,30 @@
       { season:'winter', cat:'Cook',    name:'4-Season Liquid-Fuel Stove', price:139, rating:4.8 },
     ];
 
-    const gearIcon = `<svg width="72" height="72" viewBox="0 0 24 24" fill="none" stroke="#000e1f" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20 12 5l9 15Z"/><path d="M12 5v15M7 20l5-6 5 6"/></svg>`;
+    // Choose the real product photo for each item by name/category.
+    function imgFor(p) {
+      const n = p.name.toLowerCase();
+      if (/tent/.test(n)) return 'tent';
+      if (/bag|quilt|mummy/.test(n)) return 'sleep';
+      if (/rain jacket/.test(n)) return 'rain';
+      if (/parka|down/.test(n)) return 'down';
+      if (/hoodie/.test(n)) return 'sun';
+      if (/pad/.test(n)) return 'comfort';
+      if (/boots|footwear/.test(n)) return 'footwear';
+      if (/backpack/.test(n)) return 'backpack';
+      if (/trowel|kit/.test(n)) return 'tools';
+      if (/reservoir|hydration|bottle/.test(n)) return 'hydration';
+      if (/lantern/.test(n)) return 'lantern';
+      if (/headlamp/.test(n)) return 'headlamp';
+      if (/stove|cook set/.test(n)) return 'stove';
+      if (/crampon|cleat|traction/.test(n)) return 'traction';
+      const c = p.cat.toLowerCase();
+      return ({ sleep:'sleep', cook:'stove', lighting:'lantern', comfort:'comfort', apparel:'down', shelter:'tent', hydration:'hydration', footwear:'footwear', carry:'backpack', traction:'traction', tools:'tools' })[c] || 'tent';
+    }
 
     document.getElementById('seasonCards').innerHTML = seasons.map(s => `
       <div class="season-card" data-season="${s.id}">
-        <div class="art"><svg width="88" height="88" viewBox="0 0 24 24" fill="none" stroke="#000e1f" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="${s.icon}"/></svg></div>
+        <div class="art"><span class="badge">${s.name}</span><img src="images/seasons/${s.id}.jpg" alt="${s.name} camping" loading="lazy"></div>
         <div class="foot"><h3>${s.name}</h3><p>${s.blurb}</p><span class="btn btn-ghost">Shop ${s.name}</span></div>
       </div>`).join('');
     document.querySelectorAll('.season-card').forEach(c => c.addEventListener('click', () => setFilter(c.dataset.season)));
@@ -799,7 +807,7 @@
       document.getElementById('productGrid').innerHTML = list.map((p, i) => `
         <article class="product">
           ${active !== 'all' ? `<span class="rank">#${i + 1}</span>` : ''}
-          <div class="photo">${gearIcon}</div>
+          <div class="photo"><img src="images/products/${imgFor(p)}.jpg" alt="${p.name}" loading="lazy"></div>
           <span class="season-tag">${p.season} · ${p.cat}</span>
           <div class="brand">Amazon pick</div>
           <div class="name">${p.name}</div>
