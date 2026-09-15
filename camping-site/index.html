@@ -1,0 +1,503 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Basecamp — All-Season Camping Gear, Curated for Every Adventure</title>
+  <meta name="description" content="Honest, hand-picked camping gear for spring, summer, fall, and winter. Everything you need for the trail — reviewed and linked to the best on Amazon." />
+
+  <!-- Outfit is the design's approved substitute for GT Walsheim Pro -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;700;900&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      /* Colors — from A-dam style reference */
+      --midcurrent-navy: #000e1f;
+      --deep-cobalt:     #0000c5;
+      --twilight-slate:  #1a2635;
+      --graphite:        #000000;
+      --paper-white:     #ffffff;
+      --morning-mist:    #f4f4f4;
+      --cloud-veil:      #e6e7e9;
+      --soft-stone:      #dcdddf;
+      --slate-gray:      #666e79;
+      --sunbeam:         #fff48d;
+
+      --font-display: 'Outfit', ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+
+      --page-max: 1200px;
+      --radius-pill: 30px;
+      --card-padding: 16px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--morning-mist);
+      color: var(--midcurrent-navy);
+      font-family: var(--font-display);
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 1.4;
+      -webkit-font-smoothing: antialiased;
+    }
+    img { max-width: 100%; display: block; }
+    a { color: inherit; text-decoration: none; }
+    [hidden] { display: none !important; }
+    @media (prefers-reduced-motion: reduce) {
+      * { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+    }
+
+    .wrap { max-width: var(--page-max); margin: 0 auto; padding: 0 24px; }
+
+    /* Announcement bar */
+    .announce {
+      background: var(--deep-cobalt);
+      color: var(--paper-white);
+      font-size: 13px;
+      line-height: 1.4;
+      font-weight: 400;
+    }
+    .announce .row {
+      max-width: var(--page-max);
+      margin: 0 auto;
+      min-height: 38px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      padding: 6px 24px;
+      text-align: center;
+    }
+    .announce button {
+      background: none; border: 0; color: inherit; cursor: pointer;
+      display: inline-flex; padding: 4px; opacity: .8;
+    }
+    .announce button:hover { opacity: 1; }
+
+    /* Top navigation */
+    .nav { background: var(--paper-white); border-bottom: 1px solid var(--cloud-veil); }
+    .nav .row {
+      max-width: var(--page-max); margin: 0 auto; height: 66px;
+      display: grid; grid-template-columns: 1fr auto 1fr; align-items: center;
+      padding: 0 24px;
+    }
+    .nav-links { display: flex; gap: 24px; font-size: 14px; color: var(--graphite); }
+    .nav-links a:hover { color: var(--deep-cobalt); }
+    .wordmark {
+      justify-self: center; font-weight: 900; font-size: 22px; letter-spacing: -.5px;
+      display: inline-flex; align-items: center; gap: 8px;
+    }
+    .wordmark .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--deep-cobalt); }
+    .nav-utils { justify-self: end; display: flex; align-items: center; gap: 18px; color: var(--graphite); }
+    .nav-utils a { display: inline-flex; }
+    .nav-utils .sel { font-size: 13px; color: var(--slate-gray); }
+    .nav-links.mobile { display: none; }
+
+    /* Hero */
+    .hero { position: relative; width: 100%; min-height: 74vh; display: flex; align-items: flex-end; overflow: hidden; }
+    .hero svg.bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+    .hero .overlay { position: relative; max-width: var(--page-max); width: 100%; margin: 0 auto; padding: 0 24px 56px; }
+    .hero .label { color: var(--paper-white); font-size: 12px; font-weight: 500; text-transform: uppercase; letter-spacing: 2px; }
+    .hero h1 { color: var(--paper-white); font-weight: 900; font-size: 70px; line-height: 1; margin: 12px 0 20px; max-width: 12ch; }
+    @media (max-width: 720px) { .hero h1 { font-size: 44px; } }
+
+    /* Pill buttons */
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      border-radius: var(--radius-pill); border: 0; cursor: pointer;
+      font-family: var(--font-display); font-weight: 500; font-size: 15px; line-height: 1.2;
+      padding: 12px 24px;
+    }
+    .btn-navy { background: var(--midcurrent-navy); color: var(--paper-white); }
+    .btn-navy:hover { background: var(--twilight-slate); }
+    .btn-ghost { background: transparent; color: var(--midcurrent-navy); border: 1px solid var(--cloud-veil); }
+    .btn-ghost:hover { border-color: var(--soft-stone); }
+    .btn-light { background: var(--paper-white); color: var(--midcurrent-navy); }
+
+    /* Section scaffolding */
+    section { padding: 64px 0; }
+    .section-head { text-align: center; max-width: 680px; margin: 0 auto 40px; }
+    .section-head .kicker { font-size: 12px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--deep-cobalt); }
+    .section-head h2 { font-weight: 900; font-size: 44px; line-height: 1.1; margin: 10px 0 12px; }
+    .section-head p { color: var(--slate-gray); font-size: 16px; margin: 0; }
+    @media (max-width: 720px) { .section-head h2 { font-size: 30px; } }
+
+    /* Season category cards */
+    .seasons { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--cloud-veil); border: 1px solid var(--cloud-veil); }
+    .season-card { background: var(--paper-white); padding: 0; text-align: center; }
+    .season-card .art { aspect-ratio: 4/5; display: flex; align-items: center; justify-content: center; }
+    .season-card h3 { font-weight: 900; font-size: 20px; margin: 0 0 4px; }
+    .season-card p { color: var(--slate-gray); font-size: 13px; margin: 0 0 16px; padding: 0 12px; }
+    .season-card .foot { padding: 16px; }
+    @media (max-width: 900px) { .seasons { grid-template-columns: repeat(2, 1fr); } }
+
+    /* Product grid */
+    .filters { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-bottom: 32px; }
+    .chip {
+      border-radius: var(--radius-pill); border: 1px solid var(--cloud-veil); background: var(--paper-white);
+      color: var(--midcurrent-navy); font-size: 14px; font-weight: 500; padding: 8px 18px; cursor: pointer;
+      font-family: var(--font-display);
+    }
+    .chip[aria-pressed="true"] { background: var(--midcurrent-navy); color: var(--paper-white); border-color: var(--midcurrent-navy); }
+
+    .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--cloud-veil); border: 1px solid var(--cloud-veil); }
+    @media (max-width: 1000px) { .grid { grid-template-columns: repeat(3, 1fr); } }
+    @media (max-width: 720px) { .grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 460px) { .grid { grid-template-columns: 1fr; } }
+
+    .product { background: var(--paper-white); padding: var(--card-padding); display: flex; flex-direction: column; }
+    .product .photo { aspect-ratio: 1/1; display: flex; align-items: center; justify-content: center; padding: 18px; }
+    .product .season-tag { align-self: flex-start; font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--slate-gray); }
+    .product .brand { font-size: 11px; color: var(--graphite); margin-top: 12px; }
+    .product .name { font-size: 15px; color: var(--midcurrent-navy); font-weight: 500; margin: 2px 0 6px; min-height: 2.6em; }
+    .product .stars { display: inline-flex; align-items: center; gap: 4px; }
+    .product .stars .num { color: var(--slate-gray); font-size: 12px; }
+    .product .price { color: var(--slate-gray); font-size: 13px; margin: 8px 0 14px; }
+    .product .price b { color: var(--midcurrent-navy); font-weight: 700; font-size: 15px; }
+    .product .btn { margin-top: auto; justify-content: center; }
+    .star { width: 14px; height: 14px; }
+    .star path { fill: var(--sunbeam); stroke: var(--soft-stone); stroke-width: 1; }
+    .star.empty path { fill: var(--cloud-veil); }
+
+    /* Editorial text section */
+    .editorial { background: var(--morning-mist); }
+    .editorial .inner { max-width: 680px; margin: 0 auto; text-align: center; }
+    .editorial h2 { font-weight: 900; font-size: 38px; line-height: 1.1; margin: 0 0 14px; }
+    .editorial p { color: var(--slate-gray); font-size: 16px; margin: 0; }
+
+    /* Split section */
+    .split { display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 48px; max-width: var(--page-max); margin: 0 auto; padding: 0 0 0 24px; }
+    .split .copy h2 { font-weight: 900; font-size: 30px; line-height: 1.15; margin: 0 0 14px; }
+    .split .copy p { color: var(--slate-gray); margin: 0 0 20px; }
+    .split .media { aspect-ratio: 5/4; }
+    .split ul { list-style: none; padding: 0; margin: 0 0 24px; display: grid; gap: 10px; }
+    .split ul li { display: flex; gap: 10px; align-items: flex-start; font-size: 15px; }
+    .split ul svg { flex: none; margin-top: 2px; color: var(--deep-cobalt); }
+    @media (max-width: 860px) { .split { grid-template-columns: 1fr; padding: 0 24px; } .split .media { order: -1; } }
+
+    /* Trust widget */
+    .trust {
+      position: fixed; left: 20px; bottom: 20px; z-index: 30;
+      width: 60px; height: 60px; border-radius: 50%; background: var(--midcurrent-navy);
+      color: var(--paper-white); display: flex; flex-direction: column; align-items: center; justify-content: center;
+      text-decoration: none;
+    }
+    .trust .score { font-size: 13px; font-weight: 700; line-height: 1; }
+    .trust .lbl { font-size: 9px; opacity: .85; }
+
+    /* Footer */
+    footer { background: var(--paper-white); border-top: 1px solid var(--cloud-veil); }
+    .foot-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1.6fr; gap: 40px; padding: 56px 0; }
+    footer h4 { font-size: 12px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--slate-gray); margin: 0 0 16px; font-weight: 700; }
+    footer ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; font-size: 14px; }
+    footer ul a { color: var(--midcurrent-navy); }
+    footer ul a:hover { color: var(--deep-cobalt); }
+    .foot-brand .wordmark { font-size: 24px; }
+    .foot-brand p { color: var(--slate-gray); font-size: 14px; max-width: 34ch; margin: 14px 0 0; }
+    .disclosure { color: var(--slate-gray); font-size: 12px; line-height: 1.5; }
+    .foot-bottom { border-top: 1px solid var(--cloud-veil); }
+    .foot-bottom .row { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; padding: 20px 0; font-size: 12px; color: var(--slate-gray); }
+    @media (max-width: 860px) { .foot-grid { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 560px) { .foot-grid { grid-template-columns: 1fr; } }
+
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); border: 0; }
+  </style>
+</head>
+<body>
+
+  <!-- Announcement bar (Amazon Associates disclosure is required for US audiences) -->
+  <div class="announce">
+    <div class="row">
+      <button aria-label="Previous message" id="annPrev">‹</button>
+      <span id="annMsg">Free 2-day shipping on Prime-eligible gear · As an Amazon Associate we earn from qualifying purchases</span>
+      <button aria-label="Next message" id="annNext">›</button>
+    </div>
+  </div>
+
+  <!-- Top navigation -->
+  <header class="nav">
+    <div class="row">
+      <nav class="nav-links" aria-label="Primary">
+        <a href="#seasons">Shop by Season</a>
+        <a href="#gear">All Gear</a>
+        <a href="#guides">Guides</a>
+        <a href="#about">About</a>
+      </nav>
+      <a href="#" class="wordmark" aria-label="Basecamp home">
+        <span class="dot"></span> BASECAMP
+      </a>
+      <div class="nav-utils">
+        <span class="sel">USD $</span>
+        <a href="#" aria-label="Search">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+        </a>
+        <a href="#" aria-label="Account">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>
+        </a>
+        <a href="#" aria-label="Saved">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21 12 16 5 21V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2Z"/></svg>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero -->
+    <section class="hero" style="padding:0;">
+      <svg class="bg" viewBox="0 0 1440 760" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+        <defs>
+          <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#1a2635"/><stop offset="0.55" stop-color="#3a5570"/><stop offset="1" stop-color="#7d95a8"/>
+          </linearGradient>
+          <linearGradient id="scrim" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0.4" stop-color="rgba(0,14,31,0)"/><stop offset="1" stop-color="rgba(0,14,31,0.55)"/>
+          </linearGradient>
+        </defs>
+        <rect width="1440" height="760" fill="url(#sky)"/>
+        <circle cx="1160" cy="180" r="70" fill="#fff48d" opacity="0.85"/>
+        <path d="M0 520 L240 360 L430 470 L640 300 L860 500 L1040 380 L1260 520 L1440 430 L1440 760 L0 760 Z" fill="#0b1a2b"/>
+        <path d="M0 610 L200 520 L420 600 L640 500 L880 610 L1120 540 L1440 620 L1440 760 L0 760 Z" fill="#050f1a"/>
+        <rect width="1440" height="760" fill="url(#scrim)"/>
+      </svg>
+      <div class="overlay">
+        <p class="label">Four seasons · One kit</p>
+        <h1>Gear up for every season.</h1>
+        <div style="display:flex; gap:12px; flex-wrap:wrap;">
+          <a href="#seasons" class="btn btn-light">Shop by season</a>
+          <a href="#gear" class="btn btn-ghost" style="color:#fff; border-color:rgba(255,255,255,.5)">Browse all gear</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Shop by season -->
+    <section id="seasons" class="wrap">
+      <div class="section-head">
+        <span class="kicker">Shop by season</span>
+        <h2>Whatever the forecast, we've got the kit.</h2>
+        <p>From sweltering desert nights to sub-zero ridgelines — curated Amazon picks for spring, summer, fall, and winter camping.</p>
+      </div>
+      <div class="seasons" id="seasonCards"></div>
+    </section>
+
+    <!-- All gear grid -->
+    <section id="gear" class="editorial" style="padding-top:0;">
+      <div class="wrap" style="padding-top:64px;">
+        <div class="section-head">
+          <span class="kicker">The gear locker</span>
+          <h2>Everything you need on the trail.</h2>
+          <p>Shelter, sleep, cook, carry, wear, and light your way. Filter by season to build a complete kit.</p>
+        </div>
+        <div class="filters" id="filters"></div>
+        <div class="grid" id="productGrid"></div>
+      </div>
+    </section>
+
+    <!-- Editorial break -->
+    <section class="editorial" id="guides">
+      <div class="wrap">
+        <div class="inner">
+          <span class="kicker" style="color:var(--deep-cobalt); font-size:12px; font-weight:700; letter-spacing:2px; text-transform:uppercase;">Tested on the trail</span>
+          <h2 style="font-weight:900; font-size:38px; line-height:1.1; margin:10px 0 14px;">We only recommend gear we'd carry ourselves.</h2>
+          <p>Every product is chosen for real-world durability, packability, and value — then linked to the best price on Amazon. No fluff, no filler, just the pieces that earn a spot in the pack.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Split section -->
+    <section id="about" style="background:var(--morning-mist);">
+      <div class="split">
+        <div class="copy">
+          <h2>Built for all four seasons.</h2>
+          <p>A great camping kit isn't seasonal — it's modular. Start with the all-weather essentials, then layer in season-specific pieces as the temperature swings.</p>
+          <ul>
+            <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Temperature-rated sleep systems for every climate</li>
+            <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Shelters from ultralight tarps to 4-season tents</li>
+            <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Layering, cooking, and lighting that packs down small</li>
+          </ul>
+          <a href="#gear" class="btn btn-navy">Build your kit</a>
+        </div>
+        <svg class="media" viewBox="0 0 500 400" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+          <rect width="500" height="400" fill="#ffffff"/>
+          <rect x="0" y="0" width="500" height="400" fill="#f4f4f4"/>
+          <g stroke="#000e1f" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M120 250 L200 130 L280 250 Z"/>
+            <path d="M200 130 L200 250"/>
+            <circle cx="360" cy="160" r="34"/>
+            <path d="M360 126v68M326 160h68"/>
+            <rect x="300" y="240" width="90" height="60" rx="6"/>
+            <path d="M100 300h300"/>
+          </g>
+        </svg>
+      </div>
+    </section>
+  </main>
+
+  <!-- Trust widget -->
+  <a class="trust" href="#gear" aria-label="Rated 4.8, Excellent">
+    <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1Z" fill="#fff48d"/></svg>
+    <span class="score">4.8</span>
+    <span class="lbl">Excellent</span>
+  </a>
+
+  <!-- Footer -->
+  <footer>
+    <div class="wrap">
+      <div class="foot-grid">
+        <div class="foot-brand">
+          <span class="wordmark"><span class="dot"></span> BASECAMP</span>
+          <p>Honest, hand-picked camping gear for every season — reviewed and linked to the best on Amazon.</p>
+        </div>
+        <div>
+          <h4>Shop</h4>
+          <ul>
+            <li><a href="#seasons">Spring</a></li>
+            <li><a href="#seasons">Summer</a></li>
+            <li><a href="#seasons">Fall</a></li>
+            <li><a href="#seasons">Winter</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Company</h4>
+          <ul>
+            <li><a href="#guides">Guides</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Disclosure</h4>
+          <p class="disclosure">Basecamp is a participant in the Amazon Services LLC Associates Program, an affiliate advertising program designed to provide a means for sites to earn advertising fees by advertising and linking to Amazon.com. As an Amazon Associate we earn from qualifying purchases. Prices and availability are accurate as of the date/time shown and are subject to change.</p>
+        </div>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <div class="wrap">
+        <div class="row">
+          <span>© <span id="year"></span> Basecamp. Product names, prices, and ratings are illustrative placeholders.</span>
+          <span><a href="#">Privacy</a> · <a href="#">Terms</a> · <a href="#">Affiliate Disclosure</a></span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    /* --- Announcement rotator --- */
+    (function () {
+      const msgs = [
+        "Free 2-day shipping on Prime-eligible gear · As an Amazon Associate we earn from qualifying purchases",
+        "New for winter: 4-season tents & 0°F sleeping bags — shop the cold-weather kit",
+        "Spring restock live · Lightweight shelters and rain shells now curated",
+      ];
+      let i = 0; const el = document.getElementById('annMsg');
+      const set = (n) => { i = (n + msgs.length) % msgs.length; el.textContent = msgs[i]; };
+      document.getElementById('annPrev').onclick = () => set(i - 1);
+      document.getElementById('annNext').onclick = () => set(i + 1);
+    })();
+
+    /* --- Season definitions --- */
+    const seasons = [
+      { id: 'spring', name: 'Spring', blurb: 'Rain shells, lightweight tents & trail-ready layers', icon: 'M12 2v6m0 0 3-3m-3 3L9 5 M6 14a6 6 0 0 1 12 0c0 4-6 8-6 8s-6-4-6-8Z' },
+      { id: 'summer', name: 'Summer', blurb: 'Breathable sleep systems, sun protection & hydration', icon: 'M12 4v2m0 12v2m8-8h-2M6 12H4m13.7-5.7-1.4 1.4M7.7 16.3l-1.4 1.4m11.4 0-1.4-1.4M7.7 7.7 6.3 6.3M12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8Z' },
+      { id: 'fall', name: 'Fall', blurb: 'Insulated layers, camp stoves & cozy 20°F bags', icon: 'M12 3c3 4 3 7 0 10-3-3-3-6 0-10Z M8 21c2-3 5-4 8-4' },
+      { id: 'winter', name: 'Winter', blurb: '4-season tents, 0°F bags & serious insulation', icon: 'M12 2v20M4 6l16 12M20 6 4 18M2 12h20' },
+    ];
+
+    /* --- Products (swap href with your real Amazon affiliate links, e.g. ?tag=yourtag-20) --- */
+    const products = [
+      // Spring
+      { season:'spring', cat:'Shelter', name:'2-Person Lightweight Backpacking Tent', price:129, rating:4.6, count:1820 },
+      { season:'spring', cat:'Apparel', name:'Packable Waterproof Rain Jacket', price:59, rating:4.5, count:940 },
+      { season:'spring', cat:'Sleep',   name:'3-Season Down Sleeping Bag (30°F)', price:149, rating:4.7, count:2110 },
+      { season:'spring', cat:'Footwear',name:'Waterproof Hiking Boots', price:110, rating:4.6, count:3050 },
+      { season:'spring', cat:'Carry',   name:'40L Ventilated Hiking Backpack', price:89, rating:4.5, count:1290 },
+      { season:'spring', cat:'Tools',   name:'Compact Camp Trowel & Kit', price:24, rating:4.4, count:610 },
+      // Summer
+      { season:'summer', cat:'Sleep',   name:'Breathable 50°F Quilt', price:119, rating:4.6, count:870 },
+      { season:'summer', cat:'Shelter', name:'Ultralight 1P Mesh Tent', price:99, rating:4.5, count:640 },
+      { season:'summer', cat:'Hydration',name:'2L Hydration Reservoir', price:29, rating:4.7, count:4200 },
+      { season:'summer', cat:'Apparel', name:'UPF 50 Sun Hoodie', price:39, rating:4.6, count:1550 },
+      { season:'summer', cat:'Comfort', name:'Inflatable Sleeping Pad (R2.0)', price:69, rating:4.5, count:2380 },
+      { season:'summer', cat:'Lighting',name:'Rechargeable Camp Lantern', price:34, rating:4.7, count:3110 },
+      // Fall
+      { season:'fall', cat:'Sleep',   name:'20°F Insulated Mummy Bag', price:159, rating:4.7, count:1980 },
+      { season:'fall', cat:'Cook',    name:'Compact Backpacking Stove', price:49, rating:4.8, count:5400 },
+      { season:'fall', cat:'Apparel', name:'Packable Down Insulated Jacket', price:99, rating:4.6, count:2260 },
+      { season:'fall', cat:'Comfort', name:'Insulated Sleeping Pad (R4.2)', price:99, rating:4.6, count:1440 },
+      { season:'fall', cat:'Lighting',name:'300-Lumen Rechargeable Headlamp', price:32, rating:4.7, count:6120 },
+      { season:'fall', cat:'Cook',    name:'2-Pot Anodized Cook Set', price:44, rating:4.5, count:1330 },
+      // Winter
+      { season:'winter', cat:'Shelter', name:'4-Season Mountaineering Tent', price:329, rating:4.7, count:520 },
+      { season:'winter', cat:'Sleep',   name:'0°F Expedition Down Bag', price:279, rating:4.8, count:410 },
+      { season:'winter', cat:'Comfort', name:'4-Season Insulated Pad (R6.5)', price:179, rating:4.7, count:760 },
+      { season:'winter', cat:'Apparel', name:'800-Fill Expedition Parka', price:249, rating:4.6, count:880 },
+      { season:'winter', cat:'Traction',name:'Trail Crampons / Ice Cleats', price:39, rating:4.7, count:3900 },
+      { season:'winter', cat:'Cook',    name:'4-Season Liquid-Fuel Stove', price:139, rating:4.8, count:1020 },
+    ];
+
+    const gearIcon = `<svg width="72" height="72" viewBox="0 0 24 24" fill="none" stroke="#000e1f" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20 12 5l9 15Z"/><path d="M12 5v15M7 20l5-6 5 6"/></svg>`;
+
+    /* Render season cards */
+    document.getElementById('seasonCards').innerHTML = seasons.map(s => `
+      <a class="season-card" href="#gear" data-season="${s.id}">
+        <div class="art">
+          <svg width="88" height="88" viewBox="0 0 24 24" fill="none" stroke="#000e1f" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="${s.icon}"/></svg>
+        </div>
+        <div class="foot">
+          <h3>${s.name}</h3>
+          <p>${s.blurb}</p>
+          <span class="btn btn-ghost">Shop ${s.name}</span>
+        </div>
+      </a>`).join('');
+
+    // Season card click -> set filter
+    document.querySelectorAll('.season-card').forEach(c => {
+      c.addEventListener('click', () => setFilter(c.dataset.season));
+    });
+
+    /* Filters */
+    const filters = [{id:'all', name:'All seasons'}, ...seasons.map(s => ({id:s.id, name:s.name}))];
+    let active = 'all';
+    const filterEl = document.getElementById('filters');
+    filterEl.innerHTML = filters.map(f => `<button class="chip" data-f="${f.id}" aria-pressed="${f.id==='all'}">${f.name}</button>`).join('');
+    filterEl.querySelectorAll('.chip').forEach(b => b.addEventListener('click', () => setFilter(b.dataset.f)));
+
+    function starRow(rating) {
+      let out = '';
+      for (let i = 1; i <= 5; i++) {
+        const empty = i > Math.round(rating) ? ' empty' : '';
+        out += `<svg class="star${empty}" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1Z"/></svg>`;
+      }
+      return out;
+    }
+
+    function render() {
+      const list = active === 'all' ? products : products.filter(p => p.season === active);
+      document.getElementById('productGrid').innerHTML = list.map(p => `
+        <article class="product">
+          <div class="photo">${gearIcon}</div>
+          <span class="season-tag">${p.season} · ${p.cat}</span>
+          <div class="brand">Amazon pick</div>
+          <div class="name">${p.name}</div>
+          <div class="stars" aria-label="Rated ${p.rating} out of 5">${starRow(p.rating)} <span class="num">(${p.rating})</span></div>
+          <div class="price"><b>$${p.price}</b> on Amazon</div>
+          <a class="btn btn-navy" href="#" rel="sponsored nofollow noopener" target="_blank">View on Amazon</a>
+        </article>`).join('');
+    }
+
+    function setFilter(id) {
+      active = id;
+      filterEl.querySelectorAll('.chip').forEach(b => b.setAttribute('aria-pressed', b.dataset.f === id));
+      render();
+      document.getElementById('gear').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    render();
+  </script>
+</body>
+</html>
