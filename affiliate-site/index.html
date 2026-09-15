@@ -1,0 +1,360 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>TopPicks — Best Deals & Product Reviews for the US</title>
+  <meta name="description" content="Hand-picked, expert-reviewed products with the best deals in the USA. Honest reviews, real comparisons, and trusted affiliate recommendations." />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;500;600;700&family=Rubik:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            heading: ['Rubik', 'system-ui', 'sans-serif'],
+            body: ['"Nunito Sans"', 'system-ui', 'sans-serif'],
+          },
+          colors: {
+            brand:  { DEFAULT: '#059669', 600: '#059669', 500: '#10B981' },
+            accent: { DEFAULT: '#EA580C', 600: '#EA580C' },
+          },
+        },
+      },
+    };
+  </script>
+  <style>
+    :root { color-scheme: light dark; }
+    body { font-family: 'Nunito Sans', system-ui, sans-serif; }
+    h1,h2,h3,h4,.font-heading { font-family: 'Rubik', system-ui, sans-serif; }
+    @media (prefers-reduced-motion: reduce) {
+      * { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+    }
+    .card-hover { transition: transform .2s ease, box-shadow .2s ease; }
+    .card-hover:hover { transform: translateY(-4px); box-shadow: 0 20px 40px -12px rgba(5,150,105,.25); }
+  </style>
+</head>
+<body class="bg-[#ECFDF5] text-[#064E3B] dark:bg-[#052e26] dark:text-[#ECFDF5] antialiased">
+
+  <!-- FTC affiliate disclosure bar (required for US audiences) -->
+  <div class="bg-[#064E3B] text-emerald-50 text-xs sm:text-sm text-center px-4 py-2">
+    <span class="opacity-90">As an affiliate, we earn from qualifying purchases. Prices and availability are accurate as of the date shown and may change.</span>
+  </div>
+
+  <!-- Header -->
+  <header class="sticky top-0 z-40 backdrop-blur bg-white/80 dark:bg-[#052e26]/85 border-b border-emerald-200/70 dark:border-emerald-900">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-4">
+      <a href="#" class="flex items-center gap-2 font-heading font-700 text-xl">
+        <span class="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-brand text-white">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5"><path d="m5 12 5 5L20 7"/></svg>
+        </span>
+        Top<span class="text-brand">Picks</span>
+      </a>
+
+      <nav class="hidden md:flex items-center gap-7 text-sm font-600">
+        <a href="#deals" class="hover:text-brand transition-colors">Top Deals</a>
+        <a href="#categories" class="hover:text-brand transition-colors">Categories</a>
+        <a href="#reviews" class="hover:text-brand transition-colors">Reviews</a>
+        <a href="#faq" class="hover:text-brand transition-colors">FAQ</a>
+      </nav>
+
+      <div class="flex items-center gap-2">
+        <button id="themeToggle" aria-label="Toggle dark mode" class="cursor-pointer inline-flex h-10 w-10 items-center justify-center rounded-lg border border-emerald-200 dark:border-emerald-800 hover:bg-emerald-50 dark:hover:bg-emerald-900/40 transition-colors">
+          <svg class="dark:hidden h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.9 4.9l1.4 1.4m11.4 11.4 1.4 1.4M2 12h2m16 0h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+          <svg class="hidden dark:block h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+        </button>
+        <a href="#deals" class="cursor-pointer hidden sm:inline-flex items-center gap-2 rounded-lg bg-accent px-4 py-2.5 text-sm font-700 text-white hover:brightness-95 transition">
+          Shop Deals
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero -->
+    <section class="relative overflow-hidden">
+      <div class="absolute -top-24 -right-24 h-72 w-72 rounded-full bg-brand/20 blur-3xl"></div>
+      <div class="absolute -bottom-24 -left-24 h-72 w-72 rounded-full bg-accent/20 blur-3xl"></div>
+      <div class="relative max-w-6xl mx-auto px-4 sm:px-6 py-16 sm:py-24 grid lg:grid-cols-2 gap-12 items-center">
+        <div>
+          <span class="inline-flex items-center gap-2 rounded-full bg-white dark:bg-emerald-900/50 border border-emerald-200 dark:border-emerald-800 px-3 py-1 text-xs font-700 tracking-wide uppercase text-brand">
+            <span class="h-2 w-2 rounded-full bg-accent animate-pulse"></span> Updated daily · US deals
+          </span>
+          <h1 class="mt-5 font-heading font-700 text-4xl sm:text-5xl lg:text-6xl leading-[1.05]">
+            The products worth buying, <span class="text-brand">honestly reviewed.</span>
+          </h1>
+          <p class="mt-5 text-lg text-[#334155] dark:text-emerald-100/80 max-w-xl">
+            We test, compare, and hand-pick the best gear, gadgets, and home essentials — then find you the lowest verified price. No fluff, just the picks that are actually worth your money.
+          </p>
+          <div class="mt-8 flex flex-col sm:flex-row gap-3">
+            <a href="#deals" class="cursor-pointer inline-flex justify-center items-center gap-2 rounded-xl bg-accent px-6 py-3.5 font-700 text-white hover:brightness-95 transition">
+              See Today's Top Deals
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5"><path d="M5 12h14m-6-6 6 6-6 6"/></svg>
+            </a>
+            <a href="#categories" class="cursor-pointer inline-flex justify-center items-center gap-2 rounded-xl bg-white dark:bg-emerald-900/40 border border-emerald-200 dark:border-emerald-800 px-6 py-3.5 font-700 hover:bg-emerald-50 dark:hover:bg-emerald-900/60 transition">
+              Browse Categories
+            </a>
+          </div>
+          <div class="mt-8 flex flex-wrap items-center gap-x-8 gap-y-3 text-sm font-600 text-[#475569] dark:text-emerald-100/70">
+            <span class="inline-flex items-center gap-2"><svg class="h-5 w-5 text-brand" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> 500+ products tested</span>
+            <span class="inline-flex items-center gap-2"><svg class="h-5 w-5 text-brand" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Verified US pricing</span>
+            <span class="inline-flex items-center gap-2"><svg class="h-5 w-5 text-brand" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Unbiased reviews</span>
+          </div>
+        </div>
+
+        <!-- Hero featured card -->
+        <div class="relative">
+          <div class="rounded-3xl bg-white dark:bg-emerald-900/40 border border-emerald-200 dark:border-emerald-800 p-6 shadow-xl">
+            <div class="flex items-center justify-between">
+              <span class="rounded-full bg-accent/10 text-accent text-xs font-700 px-3 py-1">EDITOR'S CHOICE</span>
+              <span class="text-xs font-600 text-[#475569] dark:text-emerald-100/60">This week</span>
+            </div>
+            <div class="mt-4 aspect-[4/3] rounded-2xl bg-gradient-to-br from-emerald-100 to-emerald-200 dark:from-emerald-800 dark:to-emerald-900 flex items-center justify-center">
+              <svg class="h-20 w-20 text-brand" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18M16 10a4 4 0 0 1-8 0"/></svg>
+            </div>
+            <h3 class="mt-4 font-heading font-700 text-lg">Wireless Noise-Cancelling Headphones</h3>
+            <div class="mt-1 flex items-center gap-1 text-accent" aria-label="Rated 4.8 out of 5">
+              <svg class="h-4 w-4 fill-current" viewBox="0 0 24 24"><path d="m12 2 3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1Z"/></svg>
+              <svg class="h-4 w-4 fill-current" viewBox="0 0 24 24"><path d="m12 2 3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1Z"/></svg>
+              <svg class="h-4 w-4 fill-current" viewBox="0 0 24 24"><path d="m12 2 3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1Z"/></svg>
+              <svg class="h-4 w-4 fill-current" viewBox="0 0 24 24"><path d="m12 2 3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1Z"/></svg>
+              <svg class="h-4 w-4 fill-current opacity-50" viewBox="0 0 24 24"><path d="m12 2 3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1Z"/></svg>
+              <span class="ml-1 text-sm font-700 text-[#064E3B] dark:text-emerald-50">4.8</span>
+            </div>
+            <div class="mt-4 flex items-end justify-between">
+              <div>
+                <span class="text-2xl font-heading font-700">$179</span>
+                <span class="ml-2 text-sm line-through text-[#94A3B8]">$249</span>
+              </div>
+              <a href="#" rel="nofollow sponsored noopener" class="cursor-pointer rounded-lg bg-brand px-4 py-2 text-sm font-700 text-white hover:brightness-95 transition">View Deal</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Categories -->
+    <section id="categories" class="max-w-6xl mx-auto px-4 sm:px-6 py-14">
+      <div class="flex items-end justify-between gap-4 mb-8">
+        <div>
+          <h2 class="font-heading font-700 text-3xl">Shop by Category</h2>
+          <p class="mt-2 text-[#475569] dark:text-emerald-100/70">Find the best picks in the categories our readers love most.</p>
+        </div>
+      </div>
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+        <!-- category items generated below via script for brevity -->
+        <div id="categoryGrid" class="contents"></div>
+      </div>
+    </section>
+
+    <!-- Top deals / product grid -->
+    <section id="deals" class="max-w-6xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
+      <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-8">
+        <div>
+          <span class="inline-flex items-center gap-2 rounded-full bg-accent/10 text-accent text-xs font-700 px-3 py-1 uppercase tracking-wide">🔥 Limited time</span>
+          <h2 class="mt-3 font-heading font-700 text-3xl">Today's Top Deals</h2>
+          <p class="mt-2 text-[#475569] dark:text-emerald-100/70">Independently reviewed. Lowest verified price wins a spot.</p>
+        </div>
+      </div>
+      <div id="productGrid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+    </section>
+
+    <!-- Trust / social proof -->
+    <section id="reviews" class="bg-white dark:bg-emerald-900/30 border-y border-emerald-200 dark:border-emerald-800">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 py-16">
+        <div class="grid sm:grid-cols-3 gap-6 text-center mb-14">
+          <div><div class="font-heading font-700 text-4xl text-brand">500+</div><p class="mt-1 text-sm font-600 text-[#475569] dark:text-emerald-100/70">Products hands-on tested</p></div>
+          <div><div class="font-heading font-700 text-4xl text-brand">1.2M</div><p class="mt-1 text-sm font-600 text-[#475569] dark:text-emerald-100/70">Shoppers helped in the US</p></div>
+          <div><div class="font-heading font-700 text-4xl text-brand">4.8/5</div><p class="mt-1 text-sm font-600 text-[#475569] dark:text-emerald-100/70">Average reader rating</p></div>
+        </div>
+        <div class="grid md:grid-cols-3 gap-6">
+          <figure class="rounded-2xl bg-[#ECFDF5] dark:bg-emerald-900/40 border border-emerald-200 dark:border-emerald-800 p-6">
+            <div class="flex gap-1 text-accent mb-3">★★★★★</div>
+            <blockquote class="text-sm leading-relaxed">"I bought the headphones they recommended and saved $70 versus the store price. The review nailed exactly what I cared about."</blockquote>
+            <figcaption class="mt-4 text-sm font-700">Sarah M. · Austin, TX</figcaption>
+          </figure>
+          <figure class="rounded-2xl bg-[#ECFDF5] dark:bg-emerald-900/40 border border-emerald-200 dark:border-emerald-800 p-6">
+            <div class="flex gap-1 text-accent mb-3">★★★★★</div>
+            <blockquote class="text-sm leading-relaxed">"Finally an affiliate site that feels honest. They actually list the downsides, which is why I trust the picks."</blockquote>
+            <figcaption class="mt-4 text-sm font-700">James T. · Denver, CO</figcaption>
+          </figure>
+          <figure class="rounded-2xl bg-[#ECFDF5] dark:bg-emerald-900/40 border border-emerald-200 dark:border-emerald-800 p-6">
+            <div class="flex gap-1 text-accent mb-3">★★★★★</div>
+            <blockquote class="text-sm leading-relaxed">"The comparison tables save me hours. I check TopPicks before every major purchase now."</blockquote>
+            <figcaption class="mt-4 text-sm font-700">Priya K. · Seattle, WA</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- Newsletter CTA -->
+    <section class="max-w-6xl mx-auto px-4 sm:px-6 py-16">
+      <div class="rounded-3xl bg-brand text-white p-8 sm:p-12 text-center relative overflow-hidden">
+        <div class="absolute -top-16 -right-16 h-56 w-56 rounded-full bg-accent/30 blur-3xl"></div>
+        <div class="relative">
+          <h2 class="font-heading font-700 text-3xl sm:text-4xl">Get the best deals in your inbox</h2>
+          <p class="mt-3 text-emerald-50/90 max-w-xl mx-auto">Join 50,000+ smart shoppers. One weekly email with the top verified US deals. No spam, unsubscribe anytime.</p>
+          <form id="newsletter" class="mt-7 flex flex-col sm:flex-row gap-3 max-w-md mx-auto" novalidate>
+            <label for="email" class="sr-only">Email address</label>
+            <input id="email" type="email" required placeholder="you@example.com" class="flex-1 rounded-xl px-4 py-3.5 text-[#064E3B] placeholder:text-[#64748B] focus:outline-none focus:ring-4 focus:ring-white/40" />
+            <button type="submit" class="cursor-pointer rounded-xl bg-accent px-6 py-3.5 font-700 hover:brightness-95 transition">Subscribe</button>
+          </form>
+          <p id="formMsg" class="mt-3 text-sm font-600 h-5" role="status" aria-live="polite"></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="max-w-3xl mx-auto px-4 sm:px-6 py-10 sm:py-16">
+      <h2 class="font-heading font-700 text-3xl text-center mb-8">Frequently Asked Questions</h2>
+      <div class="space-y-3" id="faqList"></div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-[#064E3B] text-emerald-50">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 py-12 grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+      <div>
+        <div class="font-heading font-700 text-xl">Top<span class="text-brand-500">Picks</span></div>
+        <p class="mt-3 text-sm text-emerald-100/70 max-w-xs">Honest, independent product reviews and the best verified deals for shoppers across the United States.</p>
+      </div>
+      <div>
+        <h3 class="font-700 text-sm uppercase tracking-wide text-emerald-100/60">Explore</h3>
+        <ul class="mt-3 space-y-2 text-sm">
+          <li><a href="#deals" class="hover:text-brand-500 transition">Top Deals</a></li>
+          <li><a href="#categories" class="hover:text-brand-500 transition">Categories</a></li>
+          <li><a href="#reviews" class="hover:text-brand-500 transition">Reviews</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="font-700 text-sm uppercase tracking-wide text-emerald-100/60">Legal</h3>
+        <ul class="mt-3 space-y-2 text-sm">
+          <li><a href="#" class="hover:text-brand-500 transition">Affiliate Disclosure</a></li>
+          <li><a href="#" class="hover:text-brand-500 transition">Privacy Policy</a></li>
+          <li><a href="#" class="hover:text-brand-500 transition">Terms of Service</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="font-700 text-sm uppercase tracking-wide text-emerald-100/60">Disclosure</h3>
+        <p class="mt-3 text-xs text-emerald-100/70 leading-relaxed">TopPicks is a participant in affiliate advertising programs. We may earn a commission when you buy through links on our site, at no extra cost to you.</p>
+      </div>
+    </div>
+    <div class="border-t border-emerald-800">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 py-6 text-center text-xs text-emerald-100/60">
+        © <span id="year"></span> TopPicks. All rights reserved. Product names and prices are for illustration.
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Theme toggle (persisted per-viewer)
+    (function () {
+      const root = document.documentElement;
+      try {
+        const saved = localStorage.getItem('tp-theme');
+        if (saved === 'dark' || (!saved && matchMedia('(prefers-color-scheme: dark)').matches)) root.classList.add('dark');
+      } catch (e) {}
+      document.getElementById('themeToggle').addEventListener('click', () => {
+        root.classList.toggle('dark');
+        try { localStorage.setItem('tp-theme', root.classList.contains('dark') ? 'dark' : 'light'); } catch (e) {}
+      });
+    })();
+
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Categories
+    const categories = [
+      { name: 'Electronics', icon: 'M4 4h16v12H4z M8 20h8 M12 16v4' },
+      { name: 'Home & Kitchen', icon: 'M3 10 12 3l9 7 M5 10v10h14V10' },
+      { name: 'Fitness', icon: 'M6 8v8 M18 8v8 M2 12h4 M18 12h4 M6 12h12' },
+      { name: 'Beauty', icon: 'M12 3a4 4 0 0 1 4 4c0 3-4 10-4 10S8 10 8 7a4 4 0 0 1 4-4Z' },
+      { name: 'Outdoors', icon: 'M3 20 12 4l9 16Z' },
+      { name: 'Gaming', icon: 'M6 12h4 M8 10v4 M15 11h.01 M18 13h.01 M4 8h16l1 8H3Z' },
+    ];
+    document.getElementById('categoryGrid').innerHTML = categories.map(c => `
+      <a href="#deals" class="cursor-pointer card-hover group rounded-2xl bg-white dark:bg-emerald-900/40 border border-emerald-200 dark:border-emerald-800 p-5 flex flex-col items-center text-center gap-3">
+        <span class="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-brand/10 text-brand group-hover:bg-brand group-hover:text-white transition-colors">
+          <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="${c.icon}"/></svg>
+        </span>
+        <span class="font-600 text-sm">${c.name}</span>
+      </a>`).join('');
+
+    // Products (replace href with your real affiliate links)
+    const products = [
+      { name: 'Wireless Noise-Cancelling Headphones', cat: 'Electronics', price: 179, old: 249, rating: 4.8, badge: 'Best Seller' },
+      { name: 'Smart Air Fryer 6-Quart', cat: 'Home & Kitchen', price: 89, old: 129, rating: 4.7, badge: 'Top Rated' },
+      { name: 'Adjustable Dumbbell Set', cat: 'Fitness', price: 279, old: 349, rating: 4.6, badge: 'Editor’s Pick' },
+      { name: 'Robot Vacuum with Mapping', cat: 'Home & Kitchen', price: 219, old: 329, rating: 4.5, badge: 'Deal of the Day' },
+      { name: '4K Action Camera Bundle', cat: 'Electronics', price: 129, old: 199, rating: 4.7, badge: 'Trending' },
+      { name: 'Mechanical Gaming Keyboard', cat: 'Gaming', price: 74, old: 99, rating: 4.8, badge: 'Staff Favorite' },
+    ];
+    const star = (filled) => `<svg class="h-4 w-4 ${filled ? 'fill-current' : 'fill-current opacity-30'}" viewBox="0 0 24 24"><path d="m12 2 3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1Z"/></svg>`;
+    document.getElementById('productGrid').innerHTML = products.map(p => {
+      const pct = Math.round((1 - p.price / p.old) * 100);
+      const full = Math.floor(p.rating);
+      const stars = Array.from({ length: 5 }, (_, i) => star(i < full)).join('');
+      return `
+      <article class="card-hover rounded-2xl bg-white dark:bg-emerald-900/40 border border-emerald-200 dark:border-emerald-800 overflow-hidden flex flex-col">
+        <div class="relative aspect-[4/3] bg-gradient-to-br from-emerald-100 to-emerald-200 dark:from-emerald-800 dark:to-emerald-900 flex items-center justify-center">
+          <svg class="h-16 w-16 text-brand/70" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9 12 4l9 5v6l-9 5-9-5Z"/><path d="M3 9l9 5 9-5M12 14v7"/></svg>
+          <span class="absolute top-3 left-3 rounded-full bg-accent text-white text-xs font-700 px-2.5 py-1">-${pct}%</span>
+          <span class="absolute top-3 right-3 rounded-full bg-white/90 dark:bg-emerald-950/80 text-brand text-xs font-700 px-2.5 py-1">${p.badge}</span>
+        </div>
+        <div class="p-5 flex flex-col flex-1">
+          <span class="text-xs font-600 uppercase tracking-wide text-[#94A3B8]">${p.cat}</span>
+          <h3 class="mt-1 font-heading font-600 text-base leading-snug">${p.name}</h3>
+          <div class="mt-2 flex items-center gap-1 text-accent" aria-label="Rated ${p.rating} out of 5">${stars}<span class="ml-1 text-xs font-700 text-[#064E3B] dark:text-emerald-50">${p.rating}</span></div>
+          <div class="mt-auto pt-4 flex items-end justify-between">
+            <div>
+              <span class="font-heading font-700 text-xl">$${p.price}</span>
+              <span class="ml-1.5 text-sm line-through text-[#94A3B8]">$${p.old}</span>
+            </div>
+            <a href="#" rel="nofollow sponsored noopener" class="cursor-pointer inline-flex items-center gap-1.5 rounded-lg bg-brand px-4 py-2.5 text-sm font-700 text-white hover:brightness-95 transition">
+              View Deal
+              <svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg>
+            </a>
+          </div>
+        </div>
+      </article>`;
+    }).join('');
+
+    // FAQ
+    const faqs = [
+      { q: 'How does TopPicks make money?', a: 'When you buy through some of our links, we may earn a commission from the retailer at no additional cost to you. This never affects our rankings or opinions.' },
+      { q: 'Are these reviews really independent?', a: 'Yes. We buy or test products ourselves and list both pros and cons. Commissions do not change where a product ranks.' },
+      { q: 'Do the prices update automatically?', a: 'Prices shown are accurate as of the last update and can change. Always confirm the final price on the retailer’s site before purchasing.' },
+      { q: 'Do you only cover US retailers?', a: 'Our deals and pricing are focused on shoppers in the United States, primarily through major US retailers.' },
+    ];
+    document.getElementById('faqList').innerHTML = faqs.map(f => `
+      <details class="group rounded-2xl bg-white dark:bg-emerald-900/40 border border-emerald-200 dark:border-emerald-800 px-5 py-4">
+        <summary class="cursor-pointer list-none flex items-center justify-between gap-4 font-600">
+          ${f.q}
+          <svg class="h-5 w-5 shrink-0 text-brand transition-transform group-open:rotate-45" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>
+        </summary>
+        <p class="mt-3 text-sm text-[#475569] dark:text-emerald-100/75 leading-relaxed">${f.a}</p>
+      </details>`).join('');
+
+    // Newsletter (front-end only demo — wire up to your email provider)
+    document.getElementById('newsletter').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const email = document.getElementById('email');
+      const msg = document.getElementById('formMsg');
+      if (!email.value || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email.value)) {
+        msg.textContent = 'Please enter a valid email address.';
+        msg.className = 'mt-3 text-sm font-600 h-5 text-amber-200';
+        return;
+      }
+      msg.textContent = 'Thanks! Check your inbox to confirm your subscription.';
+      msg.className = 'mt-3 text-sm font-600 h-5 text-emerald-100';
+      e.target.reset();
+    });
+  </script>
+</body>
+</html>
