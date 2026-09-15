@@ -327,7 +327,24 @@
         <h2>Whatever the forecast, we've got the kit.</h2>
         <p>From sweltering desert nights to sub-zero ridgelines — curated Amazon picks for every season of camping.</p>
       </div>
-      <div class="seasons reveal" id="seasonCards"></div>
+      <div class="seasons reveal" id="seasonCards">
+        <div class="season-card" data-season="spring">
+          <div class="art"><svg width="88" height="88" viewBox="0 0 24 24" fill="none" stroke="#000e1f" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v6m0 0 3-3m-3 3L9 5 M6 14a6 6 0 0 1 12 0c0 4-6 8-6 8s-6-4-6-8Z"/></svg></div>
+          <div class="foot"><h3>Spring</h3><p>Rain shells, lightweight tents & trail-ready layers</p><span class="btn btn-ghost">Shop Spring</span></div>
+        </div>
+        <div class="season-card" data-season="summer">
+          <div class="art"><svg width="88" height="88" viewBox="0 0 24 24" fill="none" stroke="#000e1f" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v2m0 12v2m8-8h-2M6 12H4m13.7-5.7-1.4 1.4M7.7 16.3l-1.4 1.4m11.4 0-1.4-1.4M7.7 7.7 6.3 6.3M12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8Z"/></svg></div>
+          <div class="foot"><h3>Summer</h3><p>Breathable sleep systems, sun protection & hydration</p><span class="btn btn-ghost">Shop Summer</span></div>
+        </div>
+        <div class="season-card" data-season="fall">
+          <div class="art"><svg width="88" height="88" viewBox="0 0 24 24" fill="none" stroke="#000e1f" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c3 4 3 7 0 10-3-3-3-6 0-10Z M8 21c2-3 5-4 8-4"/></svg></div>
+          <div class="foot"><h3>Fall</h3><p>Insulated layers, camp stoves & cozy 20°F bags</p><span class="btn btn-ghost">Shop Fall</span></div>
+        </div>
+        <div class="season-card" data-season="winter">
+          <div class="art"><svg width="88" height="88" viewBox="0 0 24 24" fill="none" stroke="#000e1f" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M4 6l16 12M20 6 4 18M2 12h20"/></svg></div>
+          <div class="foot"><h3>Winter</h3><p>4-season tents, 0°F bags & serious insulation</p><span class="btn btn-ghost">Shop Winter</span></div>
+        </div>
+      </div>
     </section>
 
     <!-- Editor's choice feature -->
@@ -355,8 +372,225 @@
         <h2>Everything you need on the trail.</h2>
         <p>Shelter, sleep, cook, carry, wear, and light your way. Filter by season to build a complete kit.</p>
       </div>
-      <div class="filters reveal" id="filters"></div>
-      <div class="grid reveal" id="productGrid"></div>
+      <div class="filters reveal" id="filters"><button class="chip" data-f="all" aria-pressed="true">All seasons</button><button class="chip" data-f="spring" aria-pressed="false">Spring</button><button class="chip" data-f="summer" aria-pressed="false">Summer</button><button class="chip" data-f="fall" aria-pressed="false">Fall</button><button class="chip" data-f="winter" aria-pressed="false">Winter</button></div>
+      <div class="grid reveal" id="productGrid">
+        <article class="product" data-season="spring">
+          <div class="photo"><svg width="72" height="72" viewBox="0 0 24 24" fill="none" stroke="#000e1f" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20 12 5l9 15Z"/><path d="M12 5v15M7 20l5-6 5 6"/></svg></div>
+          <span class="season-tag">spring · Shelter</span>
+          <div class="brand">Amazon pick</div>
+          <div class="name">2-Person Lightweight Backpacking Tent</div>
+          <div class="stars" aria-label="Rated 4.6 out of 5"><svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1Z"/></svg><svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1Z"/></svg><svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1Z"/></svg><svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1Z"/></svg><svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1Z"/></svg> <span class="num">(4.6)</span></div>
+          <div class="price"><b>$129</b> on Amazon</div>
+          <a class="btn btn-navy" href="#" rel="sponsored nofollow noopener" target="_blank">View on Amazon</a>
+        </article>
+        <article class="product" data-season="spring">
+          <div class="photo"><svg width="72" height="72" viewBox="0 0 24 24" fill="none" stroke="#000e1f" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20 12 5l9 15Z"/><path d="M12 5v15M7 20l5-6 5 6"/></svg></div>
+          <span class="season-tag">spring · Apparel</span>
+          <div class="brand">Amazon pick</div>
+          <div class="name">Packable Waterproof Rain Jacket</div>
+          <div class="stars" aria-label="Rated 4.5 out of 5"><svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1Z"/></svg><svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1Z"/></svg><svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1Z"/></svg><svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1Z"/></svg><svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1Z"/></svg> <span class="num">(4.5)</span></div>
+          <div class="price"><b>$59</b> on Amazon</div>
+          <a class="btn btn-navy" href="#" rel="sponsored nofollow noopener" target="_blank">View on Amazon</a>
+        </article>
+        <article class="product" data-season="spring">
+          <div class="photo"><svg width="72" height="72" viewBox="0 0 24 24" fill="none" stroke="#000e1f" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20 12 5l9 15Z"/><path d="M12 5v15M7 20l5-6 5 6"/></svg></div>
+          <span class="season-tag">spring · Sleep</span>
+          <div class="brand">Amazon pick</div>
+          <div class="name">3-Season Down Sleeping Bag (30°F)</div>
+          <div class="stars" aria-label="Rated 4.7 out of 5"><svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1Z"/></svg><svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1Z"/></svg><svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1Z"/></svg><svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1Z"/></svg><svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1Z"/></svg> <span class="num">(4.7)</span></div>
+          <div class="price"><b>$149</b> on Amazon</div>
+          <a class="btn btn-navy" href="#" rel="sponsored nofollow noopener" target="_blank">View on Amazon</a>
+        </article>
+        <article class="product" data-season="spring">
+          <div class="photo"><svg width="72" height="72" viewBox="0 0 24 24" fill="none" stroke="#000e1f" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20 12 5l9 15Z"/><path d="M12 5v15M7 20l5-6 5 6"/></svg></div>
+          <span class="season-tag">spring · Footwear</span>
+          <div class="brand">Amazon pick</div>
+          <div class="name">Waterproof Hiking Boots</div>
+          <div class="stars" aria-label="Rated 4.6 out of 5"><svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1Z"/></svg><svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1Z"/></svg><svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1Z"/></svg><svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1Z"/></svg><svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1Z"/></svg> <span class="num">(4.6)</span></div>
+          <div class="price"><b>$110</b> on Amazon</div>
+          <a class="btn btn-navy" href="#" rel="sponsored nofollow noopener" target="_blank">View on Amazon</a>
+        </article>
+        <article class="product" data-season="spring">
+          <div class="photo"><svg width="72" height="72" viewBox="0 0 24 24" fill="none" stroke="#000e1f" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20 12 5l9 15Z"/><path d="M12 5v15M7 20l5-6 5 6"/></svg></div>
+          <span class="season-tag">spring · Carry</span>
+          <div class="brand">Amazon pick</div>
+          <div class="name">40L Ventilated Hiking Backpack</div>
+          <div class="stars" aria-label="Rated 4.5 out of 5"><svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1Z"/></svg><svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1Z"/></svg><svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1Z"/></svg><svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1Z"/></svg><svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1Z"/></svg> <span class="num">(4.5)</span></div>
+          <div class="price"><b>$89</b> on Amazon</div>
+          <a class="btn btn-navy" href="#" rel="sponsored nofollow noopener" target="_blank">View on Amazon</a>
+        </article>
+        <article class="product" data-season="spring">
+          <div class="photo"><svg width="72" height="72" viewBox="0 0 24 24" fill="none" stroke="#000e1f" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20 12 5l9 15Z"/><path d="M12 5v15M7 20l5-6 5 6"/></svg></div>
+          <span class="season-tag">spring · Tools</span>
+          <div class="brand">Amazon pick</div>
+          <div class="name">Compact Camp Trowel & Kit</div>
+          <div class="stars" aria-label="Rated 4.4 out of 5"><svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1Z"/></svg><svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1Z"/></svg><svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1Z"/></svg><svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1Z"/></svg><svg class="star empty" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1Z"/></svg> <span class="num">(4.4)</span></div>
+          <div class="price"><b>$24</b> on Amazon</div>
+          <a class="btn btn-navy" href="#" rel="sponsored nofollow noopener" target="_blank">View on Amazon</a>
+        </article>
+        <article class="product" data-season="summer">
+          <div class="photo"><svg width="72" height="72" viewBox="0 0 24 24" fill="none" stroke="#000e1f" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20 12 5l9 15Z"/><path d="M12 5v15M7 20l5-6 5 6"/></svg></div>
+          <span class="season-tag">summer · Sleep</span>
+          <div class="brand">Amazon pick</div>
+          <div class="name">Breathable 50°F Quilt</div>
+          <div class="stars" aria-label="Rated 4.6 out of 5"><svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1Z"/></svg><svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1Z"/></svg><svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1Z"/></svg><svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1Z"/></svg><svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1Z"/></svg> <span class="num">(4.6)</span></div>
+          <div class="price"><b>$119</b> on Amazon</div>
+          <a class="btn btn-navy" href="#" rel="sponsored nofollow noopener" target="_blank">View on Amazon</a>
+        </article>
+        <article class="product" data-season="summer">
+          <div class="photo"><svg width="72" height="72" viewBox="0 0 24 24" fill="none" stroke="#000e1f" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20 12 5l9 15Z"/><path d="M12 5v15M7 20l5-6 5 6"/></svg></div>
+          <span class="season-tag">summer · Shelter</span>
+          <div class="brand">Amazon pick</div>
+          <div class="name">Ultralight 1P Mesh Tent</div>
+          <div class="stars" aria-label="Rated 4.5 out of 5"><svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1Z"/></svg><svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1Z"/></svg><svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1Z"/></svg><svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1Z"/></svg><svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1Z"/></svg> <span class="num">(4.5)</span></div>
+          <div class="price"><b>$99</b> on Amazon</div>
+          <a class="btn btn-navy" href="#" rel="sponsored nofollow noopener" target="_blank">View on Amazon</a>
+        </article>
+        <article class="product" data-season="summer">
+          <div class="photo"><svg width="72" height="72" viewBox="0 0 24 24" fill="none" stroke="#000e1f" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20 12 5l9 15Z"/><path d="M12 5v15M7 20l5-6 5 6"/></svg></div>
+          <span class="season-tag">summer · Hydration</span>
+          <div class="brand">Amazon pick</div>
+          <div class="name">2L Hydration Reservoir</div>
+          <div class="stars" aria-label="Rated 4.7 out of 5"><svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1Z"/></svg><svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1Z"/></svg><svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1Z"/></svg><svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1Z"/></svg><svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1Z"/></svg> <span class="num">(4.7)</span></div>
+          <div class="price"><b>$29</b> on Amazon</div>
+          <a class="btn btn-navy" href="#" rel="sponsored nofollow noopener" target="_blank">View on Amazon</a>
+        </article>
+        <article class="product" data-season="summer">
+          <div class="photo"><svg width="72" height="72" viewBox="0 0 24 24" fill="none" stroke="#000e1f" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20 12 5l9 15Z"/><path d="M12 5v15M7 20l5-6 5 6"/></svg></div>
+          <span class="season-tag">summer · Apparel</span>
+          <div class="brand">Amazon pick</div>
+          <div class="name">UPF 50 Sun Hoodie</div>
+          <div class="stars" aria-label="Rated 4.6 out of 5"><svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1Z"/></svg><svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1Z"/></svg><svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1Z"/></svg><svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1Z"/></svg><svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1Z"/></svg> <span class="num">(4.6)</span></div>
+          <div class="price"><b>$39</b> on Amazon</div>
+          <a class="btn btn-navy" href="#" rel="sponsored nofollow noopener" target="_blank">View on Amazon</a>
+        </article>
+        <article class="product" data-season="summer">
+          <div class="photo"><svg width="72" height="72" viewBox="0 0 24 24" fill="none" stroke="#000e1f" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20 12 5l9 15Z"/><path d="M12 5v15M7 20l5-6 5 6"/></svg></div>
+          <span class="season-tag">summer · Comfort</span>
+          <div class="brand">Amazon pick</div>
+          <div class="name">Inflatable Sleeping Pad (R2.0)</div>
+          <div class="stars" aria-label="Rated 4.5 out of 5"><svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1Z"/></svg><svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1Z"/></svg><svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1Z"/></svg><svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1Z"/></svg><svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1Z"/></svg> <span class="num">(4.5)</span></div>
+          <div class="price"><b>$69</b> on Amazon</div>
+          <a class="btn btn-navy" href="#" rel="sponsored nofollow noopener" target="_blank">View on Amazon</a>
+        </article>
+        <article class="product" data-season="summer">
+          <div class="photo"><svg width="72" height="72" viewBox="0 0 24 24" fill="none" stroke="#000e1f" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20 12 5l9 15Z"/><path d="M12 5v15M7 20l5-6 5 6"/></svg></div>
+          <span class="season-tag">summer · Lighting</span>
+          <div class="brand">Amazon pick</div>
+          <div class="name">Rechargeable Camp Lantern</div>
+          <div class="stars" aria-label="Rated 4.7 out of 5"><svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1Z"/></svg><svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1Z"/></svg><svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1Z"/></svg><svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1Z"/></svg><svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1Z"/></svg> <span class="num">(4.7)</span></div>
+          <div class="price"><b>$34</b> on Amazon</div>
+          <a class="btn btn-navy" href="#" rel="sponsored nofollow noopener" target="_blank">View on Amazon</a>
+        </article>
+        <article class="product" data-season="fall">
+          <div class="photo"><svg width="72" height="72" viewBox="0 0 24 24" fill="none" stroke="#000e1f" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20 12 5l9 15Z"/><path d="M12 5v15M7 20l5-6 5 6"/></svg></div>
+          <span class="season-tag">fall · Sleep</span>
+          <div class="brand">Amazon pick</div>
+          <div class="name">20°F Insulated Mummy Bag</div>
+          <div class="stars" aria-label="Rated 4.7 out of 5"><svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1Z"/></svg><svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1Z"/></svg><svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1Z"/></svg><svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1Z"/></svg><svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1Z"/></svg> <span class="num">(4.7)</span></div>
+          <div class="price"><b>$159</b> on Amazon</div>
+          <a class="btn btn-navy" href="#" rel="sponsored nofollow noopener" target="_blank">View on Amazon</a>
+        </article>
+        <article class="product" data-season="fall">
+          <div class="photo"><svg width="72" height="72" viewBox="0 0 24 24" fill="none" stroke="#000e1f" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20 12 5l9 15Z"/><path d="M12 5v15M7 20l5-6 5 6"/></svg></div>
+          <span class="season-tag">fall · Cook</span>
+          <div class="brand">Amazon pick</div>
+          <div class="name">Compact Backpacking Stove</div>
+          <div class="stars" aria-label="Rated 4.8 out of 5"><svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1Z"/></svg><svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1Z"/></svg><svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1Z"/></svg><svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1Z"/></svg><svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1Z"/></svg> <span class="num">(4.8)</span></div>
+          <div class="price"><b>$49</b> on Amazon</div>
+          <a class="btn btn-navy" href="#" rel="sponsored nofollow noopener" target="_blank">View on Amazon</a>
+        </article>
+        <article class="product" data-season="fall">
+          <div class="photo"><svg width="72" height="72" viewBox="0 0 24 24" fill="none" stroke="#000e1f" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20 12 5l9 15Z"/><path d="M12 5v15M7 20l5-6 5 6"/></svg></div>
+          <span class="season-tag">fall · Apparel</span>
+          <div class="brand">Amazon pick</div>
+          <div class="name">Packable Down Insulated Jacket</div>
+          <div class="stars" aria-label="Rated 4.6 out of 5"><svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1Z"/></svg><svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1Z"/></svg><svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1Z"/></svg><svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1Z"/></svg><svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1Z"/></svg> <span class="num">(4.6)</span></div>
+          <div class="price"><b>$99</b> on Amazon</div>
+          <a class="btn btn-navy" href="#" rel="sponsored nofollow noopener" target="_blank">View on Amazon</a>
+        </article>
+        <article class="product" data-season="fall">
+          <div class="photo"><svg width="72" height="72" viewBox="0 0 24 24" fill="none" stroke="#000e1f" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20 12 5l9 15Z"/><path d="M12 5v15M7 20l5-6 5 6"/></svg></div>
+          <span class="season-tag">fall · Comfort</span>
+          <div class="brand">Amazon pick</div>
+          <div class="name">Insulated Sleeping Pad (R4.2)</div>
+          <div class="stars" aria-label="Rated 4.6 out of 5"><svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1Z"/></svg><svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1Z"/></svg><svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1Z"/></svg><svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1Z"/></svg><svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1Z"/></svg> <span class="num">(4.6)</span></div>
+          <div class="price"><b>$99</b> on Amazon</div>
+          <a class="btn btn-navy" href="#" rel="sponsored nofollow noopener" target="_blank">View on Amazon</a>
+        </article>
+        <article class="product" data-season="fall">
+          <div class="photo"><svg width="72" height="72" viewBox="0 0 24 24" fill="none" stroke="#000e1f" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20 12 5l9 15Z"/><path d="M12 5v15M7 20l5-6 5 6"/></svg></div>
+          <span class="season-tag">fall · Lighting</span>
+          <div class="brand">Amazon pick</div>
+          <div class="name">300-Lumen Rechargeable Headlamp</div>
+          <div class="stars" aria-label="Rated 4.7 out of 5"><svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1Z"/></svg><svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1Z"/></svg><svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1Z"/></svg><svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1Z"/></svg><svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1Z"/></svg> <span class="num">(4.7)</span></div>
+          <div class="price"><b>$32</b> on Amazon</div>
+          <a class="btn btn-navy" href="#" rel="sponsored nofollow noopener" target="_blank">View on Amazon</a>
+        </article>
+        <article class="product" data-season="fall">
+          <div class="photo"><svg width="72" height="72" viewBox="0 0 24 24" fill="none" stroke="#000e1f" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20 12 5l9 15Z"/><path d="M12 5v15M7 20l5-6 5 6"/></svg></div>
+          <span class="season-tag">fall · Cook</span>
+          <div class="brand">Amazon pick</div>
+          <div class="name">2-Pot Anodized Cook Set</div>
+          <div class="stars" aria-label="Rated 4.5 out of 5"><svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1Z"/></svg><svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1Z"/></svg><svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1Z"/></svg><svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1Z"/></svg><svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1Z"/></svg> <span class="num">(4.5)</span></div>
+          <div class="price"><b>$44</b> on Amazon</div>
+          <a class="btn btn-navy" href="#" rel="sponsored nofollow noopener" target="_blank">View on Amazon</a>
+        </article>
+        <article class="product" data-season="winter">
+          <div class="photo"><svg width="72" height="72" viewBox="0 0 24 24" fill="none" stroke="#000e1f" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20 12 5l9 15Z"/><path d="M12 5v15M7 20l5-6 5 6"/></svg></div>
+          <span class="season-tag">winter · Shelter</span>
+          <div class="brand">Amazon pick</div>
+          <div class="name">4-Season Mountaineering Tent</div>
+          <div class="stars" aria-label="Rated 4.7 out of 5"><svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1Z"/></svg><svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1Z"/></svg><svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1Z"/></svg><svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1Z"/></svg><svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1Z"/></svg> <span class="num">(4.7)</span></div>
+          <div class="price"><b>$329</b> on Amazon</div>
+          <a class="btn btn-navy" href="#" rel="sponsored nofollow noopener" target="_blank">View on Amazon</a>
+        </article>
+        <article class="product" data-season="winter">
+          <div class="photo"><svg width="72" height="72" viewBox="0 0 24 24" fill="none" stroke="#000e1f" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20 12 5l9 15Z"/><path d="M12 5v15M7 20l5-6 5 6"/></svg></div>
+          <span class="season-tag">winter · Sleep</span>
+          <div class="brand">Amazon pick</div>
+          <div class="name">0°F Expedition Down Bag</div>
+          <div class="stars" aria-label="Rated 4.8 out of 5"><svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1Z"/></svg><svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1Z"/></svg><svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1Z"/></svg><svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1Z"/></svg><svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1Z"/></svg> <span class="num">(4.8)</span></div>
+          <div class="price"><b>$279</b> on Amazon</div>
+          <a class="btn btn-navy" href="#" rel="sponsored nofollow noopener" target="_blank">View on Amazon</a>
+        </article>
+        <article class="product" data-season="winter">
+          <div class="photo"><svg width="72" height="72" viewBox="0 0 24 24" fill="none" stroke="#000e1f" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20 12 5l9 15Z"/><path d="M12 5v15M7 20l5-6 5 6"/></svg></div>
+          <span class="season-tag">winter · Comfort</span>
+          <div class="brand">Amazon pick</div>
+          <div class="name">4-Season Insulated Pad (R6.5)</div>
+          <div class="stars" aria-label="Rated 4.7 out of 5"><svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1Z"/></svg><svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1Z"/></svg><svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1Z"/></svg><svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1Z"/></svg><svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1Z"/></svg> <span class="num">(4.7)</span></div>
+          <div class="price"><b>$179</b> on Amazon</div>
+          <a class="btn btn-navy" href="#" rel="sponsored nofollow noopener" target="_blank">View on Amazon</a>
+        </article>
+        <article class="product" data-season="winter">
+          <div class="photo"><svg width="72" height="72" viewBox="0 0 24 24" fill="none" stroke="#000e1f" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20 12 5l9 15Z"/><path d="M12 5v15M7 20l5-6 5 6"/></svg></div>
+          <span class="season-tag">winter · Apparel</span>
+          <div class="brand">Amazon pick</div>
+          <div class="name">800-Fill Expedition Parka</div>
+          <div class="stars" aria-label="Rated 4.6 out of 5"><svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1Z"/></svg><svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1Z"/></svg><svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1Z"/></svg><svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1Z"/></svg><svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1Z"/></svg> <span class="num">(4.6)</span></div>
+          <div class="price"><b>$249</b> on Amazon</div>
+          <a class="btn btn-navy" href="#" rel="sponsored nofollow noopener" target="_blank">View on Amazon</a>
+        </article>
+        <article class="product" data-season="winter">
+          <div class="photo"><svg width="72" height="72" viewBox="0 0 24 24" fill="none" stroke="#000e1f" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20 12 5l9 15Z"/><path d="M12 5v15M7 20l5-6 5 6"/></svg></div>
+          <span class="season-tag">winter · Traction</span>
+          <div class="brand">Amazon pick</div>
+          <div class="name">Trail Crampons / Ice Cleats</div>
+          <div class="stars" aria-label="Rated 4.7 out of 5"><svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1Z"/></svg><svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1Z"/></svg><svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1Z"/></svg><svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1Z"/></svg><svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1Z"/></svg> <span class="num">(4.7)</span></div>
+          <div class="price"><b>$39</b> on Amazon</div>
+          <a class="btn btn-navy" href="#" rel="sponsored nofollow noopener" target="_blank">View on Amazon</a>
+        </article>
+        <article class="product" data-season="winter">
+          <div class="photo"><svg width="72" height="72" viewBox="0 0 24 24" fill="none" stroke="#000e1f" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20 12 5l9 15Z"/><path d="M12 5v15M7 20l5-6 5 6"/></svg></div>
+          <span class="season-tag">winter · Cook</span>
+          <div class="brand">Amazon pick</div>
+          <div class="name">4-Season Liquid-Fuel Stove</div>
+          <div class="stars" aria-label="Rated 4.8 out of 5"><svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1Z"/></svg><svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1Z"/></svg><svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1Z"/></svg><svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1Z"/></svg><svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1Z"/></svg> <span class="num">(4.8)</span></div>
+          <div class="price"><b>$139</b> on Amazon</div>
+          <a class="btn btn-navy" href="#" rel="sponsored nofollow noopener" target="_blank">View on Amazon</a>
+        </article>
+      </div>
     </section>
 
     <!-- Buyer guide: temperature ratings -->
@@ -388,7 +622,11 @@
           <thead>
             <tr><th>Tent</th><th>Best for</th><th>Capacity</th><th>Weight</th><th>Price</th><th>Rating</th><th></th></tr>
           </thead>
-          <tbody id="cmpBody"></tbody>
+          <tbody id="cmpBody">
+          <tr><td class="pn">Ultralight 1P Mesh Tent</td><td>Summer</td><td>1</td><td>2.1 lb</td><td class="best">$99</td><td>★ 4.5</td><td><a class="btn btn-navy" style="padding:8px 16px; font-size:13px;" href="#" rel="sponsored nofollow noopener" target="_blank">View</a></td></tr>
+          <tr><td class="pn">2-Person Backpacking Tent</td><td>Spring / Fall</td><td>2</td><td>4.4 lb</td><td class="best">$129</td><td>★ 4.6</td><td><a class="btn btn-navy" style="padding:8px 16px; font-size:13px;" href="#" rel="sponsored nofollow noopener" target="_blank">View</a></td></tr>
+          <tr><td class="pn">4-Season Mountaineering Tent</td><td>Winter</td><td>2</td><td>7.9 lb</td><td class="best">$329</td><td>★ 4.7</td><td><a class="btn btn-navy" style="padding:8px 16px; font-size:13px;" href="#" rel="sponsored nofollow noopener" target="_blank">View</a></td></tr>
+          </tbody>
         </table>
       </div>
     </section>
