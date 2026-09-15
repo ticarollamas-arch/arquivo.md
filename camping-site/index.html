@@ -79,7 +79,10 @@
     @media (max-width:720px){ .section-head h2{ font-size:30px; } }
 
     /* Hero — animated living scene */
-    .hero { position:relative; width:100%; min-height:90vh; display:flex; align-items:flex-end; overflow:hidden; background:#08131f; }
+    .hero { position:relative; width:100%; min-height:90vh; display:flex; align-items:flex-end; overflow:hidden;
+      background:linear-gradient(180deg,#0a1830 0%,#24324a 44%,#6b5140 78%,#a86f3d 100%); }
+    .hero .scene3d { position:absolute; inset:0; width:100%; height:100%; display:block; }
+    .hero.three-on .hero-photo { opacity:0; }
     .hero .scene { position:absolute; inset:-5%; animation:ken 34s ease-in-out infinite alternate; }
     @keyframes ken { 0%{ transform:scale(1) translate(0,0);} 100%{ transform:scale(1.09) translate(-1%,-1%);} }
     .hero .bg-video { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
@@ -87,7 +90,7 @@
       background:radial-gradient(58% 100% at 50% 100%, rgba(30,12,0,.62), rgba(0,14,31,0) 72%); }
     .hero .fire-video { position:absolute; bottom:-2%; left:50%; transform:translateX(-50%);
       width:min(720px,72%); max-height:58%; object-fit:cover; mix-blend-mode:screen; pointer-events:none; }
-    .hero .hero-photo { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+    .hero .hero-photo { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; transition:opacity .9s ease; }
     .hero .layer { position:absolute; inset:0; width:100%; height:100%; will-change:transform; }
     .hero .layer svg { position:absolute; inset:0; width:100%; height:100%; }
     .hero .sky { background:linear-gradient(180deg,#050f1a 0%,#0b1a2b 32%,#34506e 72%,#8299ad 100%); background-size:100% 220%; animation:skyshift 26s ease-in-out infinite alternate; }
@@ -287,9 +290,8 @@
   <main>
     <!-- Hero — living animated scene -->
     <section class="hero" style="padding:0;">
-      <video class="bg-video" autoplay muted loop playsinline preload="auto" poster="images/hero.jpg" aria-hidden="true">
-        <source src="videos/hero.mp4" type="video/mp4" />
-      </video>
+      <img class="hero-photo" src="images/hero.jpg" alt="" />
+      <canvas id="scene3d" class="scene3d" aria-hidden="true"></canvas>
       <div class="scrim"></div>
       <div class="overlay">
         <p class="label">Four seasons · One kit</p>
@@ -936,6 +938,174 @@
       }
       tick();
     })();
+  </script>
+  <!-- Three.js for the interactive 3D hero scene -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script>
+  (function () {
+    const canvas = document.getElementById('scene3d');
+    if (!canvas || !window.THREE) return;
+    const hero = document.querySelector('.hero');
+    const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    let renderer;
+    try {
+      renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
+    } catch (e) { return; } // no WebGL → keep photo fallback
+
+    const scene = new THREE.Scene();
+    scene.fog = new THREE.FogExp2(0x1a2233, 0.030);
+
+    const camera = new THREE.PerspectiveCamera(50, 2, 0.1, 200);
+    camera.position.set(0, 4.2, 15);
+
+    // Lights
+    scene.add(new THREE.HemisphereLight(0x9fb4d0, 0x241a12, 0.55));
+    const moon = new THREE.DirectionalLight(0xbfd0e6, 0.5);
+    moon.position.set(-8, 12, 4);
+    scene.add(moon);
+    const fireLight = new THREE.PointLight(0xff7a2c, 2.4, 26, 2);
+    fireLight.position.set(0, 1.1, 6.5);
+    scene.add(fireLight);
+
+    // Low-poly mountain ranges (rows at increasing depth)
+    function makeRange(count, z, spread, minH, maxH, color) {
+      const g = new THREE.Group();
+      const mat = new THREE.MeshStandardMaterial({ color, flatShading: true, roughness: 1, metalness: 0 });
+      for (let i = 0; i < count; i++) {
+        const h = minH + Math.random() * (maxH - minH);
+        const cone = new THREE.Mesh(new THREE.ConeGeometry(h * (0.8 + Math.random() * 0.5), h, 4), mat);
+        cone.position.set(-spread / 2 + (i / (count - 1)) * spread + (Math.random() - 0.5) * 2, h / 2 - 1.2, z + (Math.random() - 0.5) * 1.5);
+        cone.rotation.y = Math.random() * Math.PI;
+        g.add(cone);
+      }
+      return g;
+    }
+    const rangeFar = makeRange(9, -22, 44, 7, 12, 0x2b3a52);
+    const rangeMid = makeRange(8, -14, 36, 5, 9, 0x1e2c42);
+    const rangeNear = makeRange(7, -7, 30, 3, 6, 0x141f31);
+    scene.add(rangeFar, rangeMid, rangeNear);
+
+    // Ground
+    const ground = new THREE.Mesh(
+      new THREE.PlaneGeometry(120, 120, 1, 1),
+      new THREE.MeshStandardMaterial({ color: 0x101a14, flatShading: true, roughness: 1 })
+    );
+    ground.rotation.x = -Math.PI / 2;
+    ground.position.y = -1.2;
+    scene.add(ground);
+
+    // Tent (A-frame from a 4-sided cone)
+    const tent = new THREE.Mesh(
+      new THREE.ConeGeometry(1.7, 2.0, 4),
+      new THREE.MeshStandardMaterial({ color: 0xd9642a, flatShading: true, roughness: .9 })
+    );
+    tent.rotation.y = Math.PI / 4;
+    tent.position.set(-3.2, 0, 6);
+    scene.add(tent);
+
+    // Logs + flame
+    const logMat = new THREE.MeshStandardMaterial({ color: 0x3a2718, flatShading: true, roughness: 1 });
+    for (let i = 0; i < 4; i++) {
+      const log = new THREE.Mesh(new THREE.CylinderGeometry(0.12, 0.12, 1.4, 6), logMat);
+      log.position.set(0, -0.9, 6.5);
+      log.rotation.z = Math.PI / 2;
+      log.rotation.y = (i / 4) * Math.PI;
+      scene.add(log);
+    }
+    const flameMat = new THREE.MeshBasicMaterial({ color: 0xff8a3c, transparent: true, opacity: 0.95 });
+    const flame = new THREE.Mesh(new THREE.ConeGeometry(0.5, 1.5, 6), flameMat);
+    flame.position.set(0, -0.2, 6.5);
+    scene.add(flame);
+    const flameCore = new THREE.Mesh(new THREE.ConeGeometry(0.26, 0.9, 6), new THREE.MeshBasicMaterial({ color: 0xffe08a }));
+    flameCore.position.set(0, -0.35, 6.5);
+    scene.add(flameCore);
+
+    // Stars
+    const starGeo = new THREE.BufferGeometry();
+    const starN = 320, sp = new Float32Array(starN * 3);
+    for (let i = 0; i < starN; i++) {
+      sp[i*3] = (Math.random() - 0.5) * 120;
+      sp[i*3+1] = 6 + Math.random() * 40;
+      sp[i*3+2] = -40 + Math.random() * 30;
+    }
+    starGeo.setAttribute('position', new THREE.BufferAttribute(sp, 3));
+    const stars = new THREE.Points(starGeo, new THREE.PointsMaterial({ color: 0xffffff, size: 0.13, transparent: true, opacity: 0.9 }));
+    scene.add(stars);
+
+    // Embers
+    const emberN = 60, eg = new THREE.BufferGeometry(), ep = new Float32Array(emberN * 3), ev = [];
+    for (let i = 0; i < emberN; i++) {
+      ep[i*3] = (Math.random() - 0.5) * 1.2;
+      ep[i*3+1] = -0.6 + Math.random() * 2;
+      ep[i*3+2] = 6.5 + (Math.random() - 0.5) * 1.2;
+      ev.push(0.01 + Math.random() * 0.03);
+    }
+    eg.setAttribute('position', new THREE.BufferAttribute(ep, 3));
+    const embers = new THREE.Points(eg, new THREE.PointsMaterial({ color: 0xff9a4a, size: 0.10, transparent: true, opacity: 0.9 }));
+    scene.add(embers);
+
+    // Sizing
+    function resize() {
+      const w = hero.clientWidth, h = hero.clientHeight;
+      renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+      renderer.setSize(w, h, false);
+      camera.aspect = w / h; camera.updateProjectionMatrix();
+    }
+    resize(); addEventListener('resize', resize, { passive: true });
+
+    // Mouse parallax
+    let mx = 0, my = 0, tmx = 0, tmy = 0;
+    hero.addEventListener('mousemove', (e) => {
+      const r = hero.getBoundingClientRect();
+      tmx = ((e.clientX - r.left) / r.width - 0.5);
+      tmy = ((e.clientY - r.top) / r.height - 0.5);
+    });
+    hero.addEventListener('mouseleave', () => { tmx = 0; tmy = 0; });
+
+    hero.classList.add('three-on');
+
+    // Pause when off-screen
+    let running = true;
+    new IntersectionObserver(es => es.forEach(e => { running = e.isIntersecting; if (running) loop(); }), { threshold: 0 }).observe(hero);
+
+    const clock = new THREE.Clock();
+    function loop() {
+      if (!running) return;
+      const t = clock.getElapsedTime();
+      mx += (tmx - mx) * 0.05; my += (tmy - my) * 0.05;
+
+      // Camera gentle orbit + parallax
+      camera.position.x = Math.sin(t * 0.12) * 1.6 + mx * 4;
+      camera.position.y = 4.2 + my * -1.5 + Math.sin(t * 0.2) * 0.2;
+      camera.lookAt(0, 1.4, 4);
+
+      // Fire flicker
+      const fl = 2.0 + Math.sin(t * 12) * 0.4 + Math.random() * 0.5;
+      fireLight.intensity = fl;
+      flame.scale.y = 1 + Math.sin(t * 14) * 0.12;
+      flame.scale.x = 1 + Math.sin(t * 9 + 1) * 0.06;
+      flameCore.scale.y = 1 + Math.sin(t * 16) * 0.15;
+      tent.material.emissive = new THREE.Color(0x000000);
+
+      // Twinkle
+      stars.material.opacity = 0.7 + Math.sin(t * 2) * 0.2;
+
+      // Embers rise
+      const pos = embers.geometry.attributes.position.array;
+      for (let i = 0; i < emberN; i++) {
+        pos[i*3+1] += ev[i];
+        pos[i*3] += Math.sin(t * 2 + i) * 0.002;
+        if (pos[i*3+1] > 2.4) { pos[i*3+1] = -0.6; pos[i*3] = (Math.random() - 0.5) * 1.0; }
+      }
+      embers.geometry.attributes.position.needsUpdate = true;
+
+      renderer.render(scene, camera);
+      if (!reduce) requestAnimationFrame(loop);
+    }
+    if (reduce) { camera.lookAt(0, 1.4, 4); renderer.render(scene, camera); }
+    else loop();
+  })();
   </script>
 </body>
 </html>
