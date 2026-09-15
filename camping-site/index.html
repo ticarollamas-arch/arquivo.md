@@ -82,6 +82,11 @@
     .hero { position:relative; width:100%; min-height:90vh; display:flex; align-items:flex-end; overflow:hidden; background:#08131f; }
     .hero .scene { position:absolute; inset:-5%; animation:ken 34s ease-in-out infinite alternate; }
     @keyframes ken { 0%{ transform:scale(1) translate(0,0);} 100%{ transform:scale(1.09) translate(-1%,-1%);} }
+    .hero .bg-video { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+    .hero .fire-glow { position:absolute; left:0; right:0; bottom:0; height:62%; pointer-events:none;
+      background:radial-gradient(58% 100% at 50% 100%, rgba(30,12,0,.62), rgba(0,14,31,0) 72%); }
+    .hero .fire-video { position:absolute; bottom:-2%; left:50%; transform:translateX(-50%);
+      width:min(720px,72%); max-height:58%; object-fit:cover; mix-blend-mode:screen; pointer-events:none; }
     .hero .hero-photo { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
     .hero .layer { position:absolute; inset:0; width:100%; height:100%; will-change:transform; }
     .hero .layer svg { position:absolute; inset:0; width:100%; height:100%; }
@@ -280,11 +285,14 @@
   <main>
     <!-- Hero — living animated scene -->
     <section class="hero" style="padding:0;">
-      <div class="scene" aria-hidden="true">
-        <img class="hero-photo" src="images/hero.jpg" alt="" />
-        <canvas class="embers" id="embers"></canvas>
-        <div class="scrim"></div>
-      </div>
+      <video class="bg-video" autoplay muted loop playsinline preload="auto" poster="images/hero.jpg" aria-hidden="true">
+        <source src="videos/valley.mp4" type="video/mp4" />
+      </video>
+      <div class="scrim"></div>
+      <div class="fire-glow" aria-hidden="true"></div>
+      <video class="fire-video" autoplay muted loop playsinline preload="auto" aria-hidden="true">
+        <source src="videos/campfire.mp4" type="video/mp4" />
+      </video>
       <div class="overlay">
         <p class="label">Four seasons · One kit</p>
         <h1><span class="w">Gear</span> <span class="w">up</span> <span class="w">for</span> <span class="w">every&nbsp;season.</span></h1>
