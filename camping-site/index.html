@@ -281,7 +281,7 @@
       <a href="#" class="wordmark" aria-label="Basecamp home"><span class="mark" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 3 3 20h18L12 3Z" fill="currentColor"/><path d="M12 10 8 20h8l-4-10Z" fill="#7c86ff"/></svg></span> BASECAMP</a>
       <div class="nav-utils">
         <span class="sel">USD $</span>
-        <a href="#" aria-label="Search"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg></a>
+        <a href="#" id="searchBtn" aria-label="Search"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg></a>
         <a href="#" aria-label="Account"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg></a>
         <a href="#" aria-label="Saved"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21 12 16 5 21V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2Z"/></svg></a>
       </div>
@@ -1007,6 +1007,121 @@
       }
       tick();
     })();
+  </script>
+
+  <!-- Search overlay (animated floating-label input ported from the motion component) -->
+  <style>
+    .search-ov { position:fixed; inset:0; z-index:60; display:none; }
+    .search-ov.open { display:block; }
+    .search-ov .veil { position:absolute; inset:0; background:rgba(6,6,8,.82); backdrop-filter:blur(6px); opacity:0; transition:opacity .3s ease; }
+    .search-ov.open .veil { opacity:1; }
+    .search-ov .panel { position:relative; max-width:680px; margin:12vh auto 0; padding:0 24px;
+      transform:translateY(-14px); opacity:0; transition:transform .35s cubic-bezier(.2,.7,.2,1), opacity .35s ease; }
+    .search-ov.open .panel { transform:none; opacity:1; }
+    .search-ov .close { position:absolute; top:-6px; right:20px; background:none; border:0; color:var(--slate-gray); cursor:pointer; font-size:26px; line-height:1; }
+    .search-ov .close:hover { color:var(--midcurrent-navy); }
+    .fld { position:relative; padding-top:14px; }
+    .fld-input { outline:none; border:0; border-bottom:2px solid var(--midcurrent-navy); padding:8px 34px 10px 0; width:100%;
+      font-family:var(--font-display); font-size:20px; font-weight:500; color:var(--midcurrent-navy); background:transparent; }
+    .fld .ico { position:absolute; right:2px; bottom:12px; color:var(--slate-gray); pointer-events:none; }
+    .fld-label { position:absolute; left:0; bottom:12px; pointer-events:none; display:flex; }
+    .fld-label span { display:inline-block; font-size:18px; color:var(--slate-gray); transition:transform .4s cubic-bezier(.2,.7,.2,1), color .4s ease; will-change:transform; }
+    .fld.show .fld-label span { transform:translateY(-150%); color:var(--deep-cobalt); }
+    .fld.show .fld-label span { font-weight:600; }
+    .sr-results { margin-top:22px; display:flex; flex-direction:column; gap:2px; max-height:52vh; overflow:auto; }
+    .sr-item { display:flex; align-items:center; gap:14px; padding:12px 12px; border-radius:12px; text-decoration:none; color:var(--midcurrent-navy); transition:background .15s ease; }
+    .sr-item:hover, .sr-item.active { background:rgba(255,255,255,.06); }
+    .sr-thumb { width:46px; height:46px; border-radius:8px; object-fit:cover; flex:none; background:#222; }
+    .sr-item .t { font-size:15px; font-weight:500; }
+    .sr-item .s { font-size:12px; color:var(--slate-gray); text-transform:capitalize; }
+    .sr-item .go { margin-left:auto; color:var(--slate-gray); }
+    .sr-empty { color:var(--slate-gray); font-size:14px; padding:16px 12px; }
+    .sr-hint { margin-top:10px; font-size:12px; color:var(--slate-gray); }
+    .sr-chip { display:inline-block; margin-right:6px; padding:2px 8px; border:1px solid var(--cloud-veil); border-radius:9999px; }
+  </style>
+  <div class="search-ov" id="searchOverlay" role="dialog" aria-modal="true" aria-label="Search">
+    <div class="veil" data-close></div>
+    <div class="panel">
+      <button class="close" data-close aria-label="Close search">&times;</button>
+      <div class="fld" id="fld">
+        <div class="fld-label" id="fldLabel" aria-hidden="true"></div>
+        <input class="fld-input" id="searchInput" type="text" autocomplete="off" aria-label="Search gear or a season" />
+        <span class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg></span>
+      </div>
+      <div class="sr-hint">Try a season <span class="sr-chip">winter</span><span class="sr-chip">summer</span> or gear <span class="sr-chip">tent</span><span class="sr-chip">sleeping bag</span></div>
+      <div class="sr-results" id="srResults"></div>
+    </div>
+  </div>
+  <script>
+  (function () {
+    const ov = document.getElementById('searchOverlay');
+    const btn = document.getElementById('searchBtn');
+    if (!ov || !btn) return;
+    const input = document.getElementById('searchInput');
+    const fld = document.getElementById('fld');
+    const label = document.getElementById('fldLabel');
+    const results = document.getElementById('srResults');
+
+    // Animated floating label: one span per letter with a staggered delay
+    const LABEL = 'Search gear or a season';
+    label.innerHTML = LABEL.split('').map((ch, i) =>
+      `<span style="transition-delay:${(i * 0.03).toFixed(2)}s">${ch === ' ' ? ' ' : ch}</span>`).join('');
+    const syncLabel = () => fld.classList.toggle('show', document.activeElement === input || input.value.length > 0);
+    input.addEventListener('focus', syncLabel);
+    input.addEventListener('blur', syncLabel);
+
+    // Search dataset: products (link to their season page) + season shortcuts
+    const seasons = { spring:'Spring', summer:'Summer', fall:'Fall', winter:'Winter' };
+    const imgFor = (n, c) => {
+      n = n.toLowerCase();
+      if (/tent/.test(n)) return 'tent'; if (/bag|quilt|mummy/.test(n)) return 'sleep'; if (/rain jacket/.test(n)) return 'rain';
+      if (/parka|down/.test(n)) return 'down'; if (/hoodie/.test(n)) return 'sun'; if (/pad/.test(n)) return 'comfort';
+      if (/boots|footwear/.test(n)) return 'footwear'; if (/backpack/.test(n)) return 'backpack'; if (/trowel|kit/.test(n)) return 'tools';
+      if (/reservoir|hydration|bottle/.test(n)) return 'hydration'; if (/lantern/.test(n)) return 'lantern'; if (/headlamp/.test(n)) return 'headlamp';
+      if (/stove|cook set/.test(n)) return 'stove'; if (/crampon|cleat|traction/.test(n)) return 'traction';
+      return ({sleep:'sleep',cook:'stove',lighting:'lantern',comfort:'comfort',apparel:'down',shelter:'tent',hydration:'hydration',footwear:'footwear',carry:'backpack',traction:'traction',tools:'tools'})[(c||'').toLowerCase()] || 'tent';
+    };
+    const P = [
+      ['spring','Shelter','2-Person Lightweight Backpacking Tent'],['spring','Apparel','Packable Waterproof Rain Jacket'],['spring','Sleep','3-Season Down Sleeping Bag (30°F)'],['spring','Footwear','Waterproof Hiking Boots'],['spring','Carry','40L Ventilated Hiking Backpack'],['spring','Tools','Compact Camp Trowel & Kit'],
+      ['summer','Sleep','Breathable 50°F Quilt'],['summer','Shelter','Ultralight 1P Mesh Tent'],['summer','Hydration','2L Hydration Reservoir'],['summer','Apparel','UPF 50 Sun Hoodie'],['summer','Comfort','Inflatable Sleeping Pad (R2.0)'],['summer','Lighting','Rechargeable Camp Lantern'],
+      ['fall','Sleep','20°F Insulated Mummy Bag'],['fall','Cook','Compact Backpacking Stove'],['fall','Apparel','Packable Down Insulated Jacket'],['fall','Comfort','Insulated Sleeping Pad (R4.2)'],['fall','Lighting','300-Lumen Rechargeable Headlamp'],['fall','Cook','2-Pot Anodized Cook Set'],
+      ['winter','Shelter','4-Season Mountaineering Tent'],['winter','Sleep','0°F Expedition Down Bag'],['winter','Comfort','4-Season Insulated Pad (R6.5)'],['winter','Apparel','800-Fill Expedition Parka'],['winter','Traction','Trail Crampons / Ice Cleats'],['winter','Cook','4-Season Liquid-Fuel Stove'],
+    ];
+    const items = [
+      ...Object.entries(seasons).map(([id, name]) => ({ type:'season', title:name + ' collection', sub:'Season', season:id, url:id + '.html', img:'images/seasons/' + id + '.jpg' })),
+      ...P.map(([s, c, n]) => ({ type:'product', title:n, sub:seasons[s] + ' · ' + c, season:s, url:s + '.html', img:'images/products/' + imgFor(n, c) + '.jpg' })),
+    ];
+
+    let active = -1, shown = [];
+    function render(q) {
+      q = q.trim().toLowerCase();
+      shown = !q ? items.filter(i => i.type === 'season')
+        : items.filter(i => (i.title + ' ' + i.sub + ' ' + i.season).toLowerCase().includes(q));
+      active = shown.length ? 0 : -1;
+      if (!shown.length) { results.innerHTML = '<div class="sr-empty">No matches. Try “tent”, “winter”, or “sleeping bag”.</div>'; return; }
+      results.innerHTML = shown.map((i, idx) => `
+        <a class="sr-item${idx === active ? ' active' : ''}" href="${i.url}" data-i="${idx}">
+          <img class="sr-thumb" src="${i.img}" alt="" loading="lazy">
+          <span><span class="t">${i.title}</span><br><span class="s">${i.sub}</span></span>
+          <span class="go"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></span>
+        </a>`).join('');
+    }
+    function open() { ov.classList.add('open'); document.body.style.overflow = 'hidden'; render(''); setTimeout(() => input.focus(), 60); }
+    function close() { ov.classList.remove('open'); document.body.style.overflow = ''; input.value = ''; syncLabel(); }
+
+    btn.addEventListener('click', (e) => { e.preventDefault(); open(); });
+    ov.addEventListener('click', (e) => { if (e.target.hasAttribute('data-close')) close(); });
+    input.addEventListener('input', () => render(input.value));
+    document.addEventListener('keydown', (e) => {
+      if (e.key === '/' && !ov.classList.contains('open') && document.activeElement.tagName !== 'INPUT') { e.preventDefault(); open(); }
+      if (!ov.classList.contains('open')) return;
+      if (e.key === 'Escape') close();
+      if (e.key === 'ArrowDown') { e.preventDefault(); active = Math.min(active + 1, shown.length - 1); paint(); }
+      if (e.key === 'ArrowUp') { e.preventDefault(); active = Math.max(active - 1, 0); paint(); }
+      if (e.key === 'Enter' && shown[active]) { location.href = shown[active].url; }
+    });
+    function paint() { [...results.children].forEach((el, i) => el.classList.toggle('active', i === active)); const a = results.children[active]; if (a) a.scrollIntoView({ block:'nearest' }); }
+  })();
   </script>
 
   <!-- 3D coverflow season selector -->
