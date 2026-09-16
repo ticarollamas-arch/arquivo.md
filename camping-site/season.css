@@ -78,3 +78,56 @@ footer{background:var(--paper-white);border-top:1px solid var(--cloud-veil);}
 .foot-bottom{border-top:1px solid var(--cloud-veil);}
 .foot-bottom .row{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;padding:18px 24px;max-width:var(--page-max);margin:0 auto;font-size:12px;color:var(--slate-gray);}
 @media(max-width:640px){.foot{grid-template-columns:1fr;}}
+
+/* ===== Chamativo product cards (season pages) ===== */
+.pgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
+@media(max-width:900px){.pgrid{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:560px){.pgrid{grid-template-columns:1fr;}}
+.pcard{position:relative;display:flex;flex-direction:column;background:var(--paper-white);border:1px solid var(--cloud-veil);border-radius:18px;overflow:hidden;transition:transform .3s ease,box-shadow .3s ease,border-color .3s ease;color:inherit;}
+.pcard:hover{transform:translateY(-6px);box-shadow:0 24px 50px -24px rgba(0,0,0,.7);border-color:var(--deep-cobalt);}
+.pcard .media{position:relative;aspect-ratio:4/3;overflow:hidden;}
+.pcard .media img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease;}
+.pcard:hover .media img{transform:scale(1.07);}
+.pcard .media::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.15) 0%,rgba(0,0,0,0) 35%,rgba(10,10,12,.75) 100%);}
+.pcard .badge{position:absolute;top:12px;left:12px;z-index:2;background:rgba(10,10,12,.72);color:#fff;font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:5px 12px;border-radius:9999px;backdrop-filter:blur(4px);}
+.pcard .pricepill{position:absolute;bottom:12px;right:12px;z-index:2;background:var(--midcurrent-navy);color:#0a0a0c;font-weight:800;font-size:15px;padding:7px 14px;border-radius:9999px;box-shadow:0 6px 18px rgba(0,0,0,.5);}
+.pcard .info{padding:16px 16px 18px;display:flex;flex-direction:column;gap:8px;flex:1;}
+.pcard .info .nm{font-size:16px;font-weight:600;line-height:1.25;}
+.pcard .info .rt{display:inline-flex;align-items:center;gap:5px;font-size:12px;color:var(--slate-gray);}
+.pcard .info .rt .stars{display:inline-flex;gap:2px;}
+.pcard .info .view{margin-top:auto;display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:700;color:var(--deep-cobalt);}
+.pcard:hover .info .view svg{transform:translateX(3px);}
+.pcard .info .view svg{transition:transform .2s ease;}
+
+/* ===== Product detail page ===== */
+.crumb{max-width:var(--page-max);margin:0 auto;padding:18px 24px 0;font-size:13px;color:var(--slate-gray);}
+.crumb a:hover{color:var(--deep-cobalt);}
+.pd{display:grid;grid-template-columns:1.05fr 1fr;gap:40px;align-items:start;padding-top:24px;}
+@media(max-width:880px){.pd{grid-template-columns:1fr;gap:26px;}}
+.gal .main{aspect-ratio:4/3;border-radius:18px;overflow:hidden;border:1px solid var(--cloud-veil);background:#111;}
+.gal .main img{width:100%;height:100%;object-fit:cover;}
+.gal .thumbs{display:flex;gap:10px;margin-top:12px;}
+.gal .thumbs button{width:84px;height:64px;border-radius:10px;overflow:hidden;border:2px solid transparent;background:none;cursor:pointer;padding:0;}
+.gal .thumbs button.on{border-color:var(--deep-cobalt);}
+.gal .thumbs img{width:100%;height:100%;object-fit:cover;}
+.pd .cat{font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--deep-cobalt);}
+.pd h1{font-weight:900;font-size:clamp(26px,4vw,40px);line-height:1.1;margin:8px 0 10px;}
+.pd .rt{display:inline-flex;align-items:center;gap:8px;color:var(--slate-gray);font-size:14px;}
+.pd .rt .stars{display:inline-flex;gap:2px;}
+.pd .pricebox{display:flex;align-items:baseline;gap:12px;margin:20px 0;}
+.pd .pricebox .now{font-size:34px;font-weight:900;}
+.pd .pricebox .tag{font-size:13px;color:var(--slate-gray);}
+.pd .buy{display:inline-flex;align-items:center;justify-content:center;gap:8px;width:100%;max-width:360px;padding:15px 24px;font-size:16px;font-weight:800;}
+.pd .note{font-size:12px;color:var(--slate-gray);margin-top:10px;}
+.pd .hl{margin:22px 0 0;padding:0;list-style:none;display:grid;gap:10px;}
+.pd .hl li{display:flex;gap:10px;align-items:flex-start;font-size:15px;}
+.pd .hl svg{flex:none;margin-top:2px;color:var(--deep-cobalt);}
+.pd .lead{color:var(--slate-gray);font-size:15px;line-height:1.7;margin:18px 0 0;}
+.specs{max-width:var(--page-max);margin:0 auto;}
+.specs h2,.related h2{font-weight:900;font-size:24px;margin:0 0 16px;}
+.spec-table{width:100%;border-collapse:collapse;border:1px solid var(--cloud-veil);border-radius:14px;overflow:hidden;font-size:14px;}
+.spec-table tr{border-bottom:1px solid var(--cloud-veil);}
+.spec-table tr:last-child{border-bottom:0;}
+.spec-table td{padding:14px 16px;}
+.spec-table td:first-child{color:var(--slate-gray);width:40%;font-weight:600;}
+.related .pgrid{margin-top:4px;}
