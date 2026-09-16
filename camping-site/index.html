@@ -13,9 +13,10 @@
 
   <style>
     :root {
-      --midcurrent-navy:#000e1f; --deep-cobalt:#0000c5; --twilight-slate:#1a2635;
-      --graphite:#000000; --paper-white:#ffffff; --morning-mist:#f4f4f4;
-      --cloud-veil:#e6e7e9; --soft-stone:#dcdddf; --slate-gray:#666e79; --sunbeam:#fff48d;
+      /* DARK THEME palette (token roles kept; values inverted to dark) */
+      --midcurrent-navy:#ececf1; --deep-cobalt:#7c86ff; --twilight-slate:#d3d4dc;
+      --graphite:#ececf1; --paper-white:#161619; --morning-mist:#0a0a0c;
+      --cloud-veil:#2b2b32; --soft-stone:#3a3a43; --slate-gray:#9a9aa6; --sunbeam:#fff48d;
       --font-display:'Outfit',ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
       --page-max:1200px; --radius-pill:30px;
     }
@@ -69,7 +70,7 @@
     .btn-ghost { background:transparent; color:var(--midcurrent-navy); border:1px solid var(--cloud-veil); }
     .btn-ghost:hover { border-color:var(--soft-stone); }
     .btn-light { background:var(--paper-white); color:var(--midcurrent-navy); }
-    .btn-light:hover { background:#fff; }
+    .btn-light:hover { background:var(--cloud-veil); }
 
     section { padding:72px 0; }
     .section-head { text-align:center; max-width:680px; margin:0 auto 44px; }
@@ -149,7 +150,7 @@
     @media (max-width:900px){ .seasons{ grid-template-columns:repeat(2,1fr);} }
 
     /* Editor's choice banner */
-    .feature { background:var(--midcurrent-navy); color:var(--paper-white); }
+    .feature { background:#111114; color:#ececf1; }
     .feature .inner { display:grid; grid-template-columns:1.1fr 1fr; align-items:center; gap:48px; }
     .feature .art { aspect-ratio:16/11; background:var(--morning-mist); overflow:hidden; }
     .feature .art img { width:100%; height:100%; object-fit:cover; }
@@ -173,7 +174,7 @@
     .product .photo { aspect-ratio:1/1; overflow:hidden; background:#fff; display:block; }
     .product .photo img { width:100%; height:100%; object-fit:cover; transition:transform .45s ease; }
     .product:hover .photo img { transform:scale(1.06); }
-    .product .rank { position:absolute; top:16px; left:16px; background:var(--midcurrent-navy); color:#fff; font-size:11px; font-weight:700; padding:4px 8px; border-radius:var(--radius-pill); }
+    .product .rank { position:absolute; top:16px; left:16px; background:var(--deep-cobalt); color:#fff; font-size:11px; font-weight:700; padding:4px 8px; border-radius:var(--radius-pill); }
     .product .season-tag { align-self:flex-start; font-size:11px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:var(--slate-gray); }
     .product .brand { font-size:11px; color:var(--graphite); margin-top:12px; }
     .product .name { font-size:15px; color:var(--midcurrent-navy); font-weight:500; margin:2px 0 6px; min-height:2.6em; }
@@ -229,11 +230,11 @@
     @media (max-width:860px){ .split{ grid-template-columns:1fr; padding:0 24px;} .split .media{ order:-1;} }
 
     /* Newsletter */
-    .news { background:var(--midcurrent-navy); color:#fff; text-align:center; }
+    .news { background:#111114; color:#fff; text-align:center; }
     .news h2 { font-weight:900; font-size:38px; line-height:1.1; margin:0 0 10px; }
     .news p { color:rgba(255,255,255,.78); margin:0 0 24px; }
     .news form { display:flex; gap:10px; max-width:440px; margin:0 auto; flex-wrap:wrap; justify-content:center; }
-    .news input { flex:1; min-width:220px; border:0; border-radius:var(--radius-pill); padding:13px 20px; font-family:var(--font-display); font-size:15px; color:var(--midcurrent-navy); }
+    .news input { flex:1; min-width:220px; border:0; border-radius:var(--radius-pill); padding:13px 20px; font-family:var(--font-display); font-size:15px; color:#111; background:#fff; }
     .news .msg { min-height:20px; margin-top:14px; font-size:14px; font-weight:500; }
 
     /* Trust widget */
@@ -277,7 +278,7 @@
         <a href="#compare">Compare</a>
         <a href="#guides">Guides</a>
       </nav>
-      <a href="#" class="wordmark" aria-label="Basecamp home"><span class="mark" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 3 3 20h18L12 3Z" fill="#000e1f"/><path d="M12 10 8 20h8l-4-10Z" fill="#0000c5"/></svg></span> BASECAMP</a>
+      <a href="#" class="wordmark" aria-label="Basecamp home"><span class="mark" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 3 3 20h18L12 3Z" fill="currentColor"/><path d="M12 10 8 20h8l-4-10Z" fill="#7c86ff"/></svg></span> BASECAMP</a>
       <div class="nav-utils">
         <span class="sel">USD $</span>
         <a href="#" aria-label="Search"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg></a>
@@ -427,7 +428,7 @@
             <h2>The 4-season tent that handles anything.</h2>
             <p>Bombproof in wind, warm in the cold, and light enough for the long approach. Our top-rated shelter for serious all-weather camping.</p>
             <div class="price"><b>$329</b> &nbsp;on Amazon · ★ 4.7 (520 reviews)</div>
-            <a href="#" rel="sponsored nofollow noopener" target="_blank" class="btn btn-light">View on Amazon</a>
+            <a href="#" rel="sponsored nofollow noopener" target="_blank" class="btn btn-navy">View on Amazon</a>
           </div>
         </div>
       </div>
@@ -753,7 +754,7 @@
         <form id="news" novalidate>
           <label for="email" class="sr-only">Email address</label>
           <input id="email" type="email" placeholder="you@example.com" required />
-          <button type="submit" class="btn btn-light">Subscribe</button>
+          <button type="submit" class="btn btn-navy">Subscribe</button>
         </form>
         <div class="msg" id="newsMsg" role="status" aria-live="polite"></div>
       </div>
@@ -771,7 +772,7 @@
     <div class="wrap">
       <div class="foot-grid">
         <div class="foot-brand">
-          <span class="wordmark"><span class="mark" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 3 3 20h18L12 3Z" fill="#000e1f"/><path d="M12 10 8 20h8l-4-10Z" fill="#0000c5"/></svg></span> BASECAMP</span>
+          <span class="wordmark"><span class="mark" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 3 3 20h18L12 3Z" fill="currentColor"/><path d="M12 10 8 20h8l-4-10Z" fill="#7c86ff"/></svg></span> BASECAMP</span>
           <p>Honest, hand-picked camping gear for every season — reviewed and linked to the best on Amazon.</p>
         </div>
         <div><h4>Shop</h4><ul><li><a href="#seasons">Spring</a></li><li><a href="#seasons">Summer</a></li><li><a href="#seasons">Fall</a></li><li><a href="#seasons">Winter</a></li></ul></div>
