@@ -13,12 +13,18 @@
 
   <style>
     :root {
-      /* DARK THEME palette (token roles kept; values inverted to dark) */
+      --midcurrent-navy:#000e1f; --deep-cobalt:#0000c5; --twilight-slate:#1a2635;
+      --graphite:#000000; --paper-white:#ffffff; --morning-mist:#f4f4f4;
+      --cloud-veil:#e6e7e9; --soft-stone:#dcdddf; --slate-gray:#666e79; --sunbeam:#fff48d;
+      --band:#000e1f; --band-text:#ffffff;
+      --font-display:'Outfit',ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+      --page-max:1200px; --radius-pill:30px;
+    }
+    html.dark {
       --midcurrent-navy:#ececf1; --deep-cobalt:#7c86ff; --twilight-slate:#d3d4dc;
       --graphite:#ececf1; --paper-white:#161619; --morning-mist:#0a0a0c;
       --cloud-veil:#2b2b32; --soft-stone:#3a3a43; --slate-gray:#9a9aa6; --sunbeam:#fff48d;
-      --font-display:'Outfit',ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
-      --page-max:1200px; --radius-pill:30px;
+      --band:#141417; --band-text:#ececf1;
     }
     * { box-sizing:border-box; }
     html { scroll-behavior:smooth; }
@@ -150,7 +156,7 @@
     @media (max-width:900px){ .seasons{ grid-template-columns:repeat(2,1fr);} }
 
     /* Editor's choice banner */
-    .feature { background:#111114; color:#ececf1; }
+    .feature { background:var(--band); color:var(--band-text); }
     .feature .inner { display:grid; grid-template-columns:1.1fr 1fr; align-items:center; gap:48px; }
     .feature .art { aspect-ratio:16/11; background:var(--morning-mist); overflow:hidden; }
     .feature .art img { width:100%; height:100%; object-fit:cover; }
@@ -230,7 +236,7 @@
     @media (max-width:860px){ .split{ grid-template-columns:1fr; padding:0 24px;} .split .media{ order:-1;} }
 
     /* Newsletter */
-    .news { background:#111114; color:#fff; text-align:center; }
+    .news { background:var(--band); color:var(--band-text); text-align:center; }
     .news h2 { font-weight:900; font-size:38px; line-height:1.1; margin:0 0 10px; }
     .news p { color:rgba(255,255,255,.78); margin:0 0 24px; }
     .news form { display:flex; gap:10px; max-width:440px; margin:0 auto; flex-wrap:wrap; justify-content:center; }
@@ -424,7 +430,7 @@
       .fx .fx-head h2{font-weight:900;font-size:clamp(28px,4vw,40px);line-height:1.1;margin:0 0 10px;}
       .fx .fx-head p{color:var(--slate-gray);margin:0;}
       .fx .fx-row{display:flex;flex-direction:column;gap:26px;padding:44px 0;border-top:1px solid var(--cloud-veil);}
-      @media(min-width:860px){.fx .fx-row{flex-direction:row;align-items:center;gap:56px;}.fx .fx-row.rev{flex-direction:row-reverse;}}
+      @media(min-width:680px){.fx .fx-row{flex-direction:row;align-items:center;gap:48px;}.fx .fx-row.rev{flex-direction:row-reverse;}}
       .fx .fx-col{flex:1;min-width:0;}
       .fx .eyebrow{display:flex;align-items:center;gap:9px;color:var(--slate-gray);font-size:11px;font-weight:800;letter-spacing:2px;text-transform:uppercase;}
       .fx .eyebrow .ic{width:26px;height:26px;border-radius:8px;border:1px solid var(--cloud-veil);display:flex;align-items:center;justify-content:center;color:#3fbf57;}
@@ -500,7 +506,7 @@
             </div>
             <a class="fx-buy" href="#" rel="sponsored nofollow noopener" target="_blank">Buy on Amazon <span class="pz">$549</span></a>
           </div>
-          <div class="fx-media"><div class="frame"><img src="images/gallery/camp2.jpg" alt="SubZero 850 Expedition Down Bag" loading="lazy"><div class="cap">Expedition down · sub-zero<span class="badge2">Flagship</span></div></div></div>
+          <div class="fx-media"><div class="frame"><img src="images/products/sleep.jpg" alt="SubZero 850 Expedition Down Bag" loading="lazy"><div class="cap">Expedition down · sub-zero<span class="badge2">Flagship</span></div></div></div>
         </div>
 
         <!-- Coolers -->
