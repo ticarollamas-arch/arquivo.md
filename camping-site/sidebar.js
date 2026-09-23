@@ -58,7 +58,7 @@
     var name = getName();
     var initial = name ? name.charAt(0).toUpperCase() : 'G';
     var txt = name ? '<div><div class="s">hello,</div><div class="n">' + name + '</div></div>'
-                   : '<div><div class="n">Welcome</div><div class="s">tap to add your name</div></div>';
+                   : '<div><div class="n">Sign in</div><div class="s">or create your account</div></div>';
     return '<div class="bc-av">' + initial + '</div>' + txt;
   }
 
@@ -101,10 +101,124 @@
   drawer.querySelector('.bc-x').addEventListener('click', close);
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape') close(); });
 
-  drawer.querySelector('#bc-hi').addEventListener('click', function () {
-    var n = prompt('Enter your name (leave empty to remove the greeting):', getName());
-    if (n === null) return;
-    try { localStorage.setItem('bc-user', n.trim()); } catch (e) {}
-    document.getElementById('bc-hi').innerHTML = greetInner();
+  function refreshGreeting() { var el = document.getElementById('bc-hi'); if (el) el.innerHTML = greetInner(); }
+  drawer.querySelector('#bc-hi').addEventListener('click', function () { openAuth(); });
+
+  /* ============================ Auth (Sign in / Sign up) ============================ */
+  /* NOTE: front-end demo only — accounts are stored in this browser (localStorage).
+     For real, secure accounts across devices, connect a backend (Firebase/Supabase). */
+  function accounts() { try { return JSON.parse(localStorage.getItem('bc-accounts') || '[]'); } catch (e) { return []; } }
+  function saveAccounts(a) { try { localStorage.setItem('bc-accounts', JSON.stringify(a)); } catch (e) {} }
+  function session() { try { return localStorage.getItem('bc-session') || ''; } catch (e) { return ''; } }
+  function enc(s) { try { return btoa(unescape(encodeURIComponent(s))); } catch (e) { return s; } }
+  function setUser(name, email) { try { localStorage.setItem('bc-user', name); localStorage.setItem('bc-session', email || ''); } catch (e) {} refreshGreeting(); }
+
+  var authCss = '' +
+  '#bc-auth{position:fixed;inset:0;z-index:80;display:none;}' +
+  '#bc-auth.on{display:block;}' +
+  '#bc-auth .av{position:absolute;inset:0;background:rgba(6,6,10,.55);backdrop-filter:blur(4px);}' +
+  '#bc-auth .card{position:relative;max-width:420px;width:calc(100% - 40px);margin:9vh auto 0;background:var(--paper-white);color:var(--midcurrent-navy);border:1px solid var(--cloud-veil);border-radius:20px;padding:26px 26px 24px;box-shadow:0 40px 90px -30px rgba(0,0,0,.6);font-family:Outfit,ui-sans-serif,system-ui,sans-serif;}' +
+  '#bc-auth .x{position:absolute;top:14px;right:16px;background:none;border:0;color:var(--slate-gray);font-size:24px;line-height:1;cursor:pointer;}' +
+  '#bc-auth .brand{display:flex;align-items:center;gap:8px;font-weight:900;font-size:18px;letter-spacing:-.5px;margin-bottom:6px;}' +
+  '#bc-auth h3{font-weight:900;font-size:22px;margin:8px 0 2px;}' +
+  '#bc-auth .sub{color:var(--slate-gray);font-size:13px;margin:0 0 16px;}' +
+  '#bc-auth .tabs{display:flex;gap:6px;background:var(--morning-mist);border:1px solid var(--cloud-veil);border-radius:12px;padding:4px;margin-bottom:16px;}' +
+  '#bc-auth .tabs button{flex:1;border:0;background:none;padding:9px;border-radius:9px;font-weight:700;font-size:14px;color:var(--slate-gray);cursor:pointer;font-family:inherit;}' +
+  '#bc-auth .tabs button.on{background:var(--paper-white);color:var(--midcurrent-navy);box-shadow:0 1px 4px rgba(0,0,0,.12);}' +
+  '#bc-auth .soc{display:grid;gap:8px;margin-bottom:14px;}' +
+  '#bc-auth .soc button{display:flex;align-items:center;justify-content:center;gap:8px;padding:11px;border:1px solid var(--cloud-veil);background:var(--paper-white);color:var(--midcurrent-navy);border-radius:10px;font-weight:600;font-size:14px;cursor:pointer;font-family:inherit;}' +
+  '#bc-auth .soc button:hover{border-color:var(--deep-cobalt);}' +
+  '#bc-auth .or{display:flex;align-items:center;gap:10px;color:var(--slate-gray);font-size:12px;margin:6px 0 12px;}' +
+  '#bc-auth .or::before,#bc-auth .or::after{content:"";height:1px;flex:1;background:var(--cloud-veil);}' +
+  '#bc-auth label{display:block;font-size:12px;font-weight:600;color:var(--slate-gray);margin:10px 0 5px;}' +
+  '#bc-auth input{width:100%;box-sizing:border-box;padding:11px 12px;border:1px solid var(--cloud-veil);border-radius:10px;background:var(--paper-white);color:var(--midcurrent-navy);font-size:15px;font-family:inherit;}' +
+  '#bc-auth input:focus{outline:none;border-color:var(--deep-cobalt);}' +
+  '#bc-auth .go{width:100%;margin-top:16px;padding:13px;border:0;border-radius:10px;background:var(--midcurrent-navy);color:var(--paper-white);font-weight:800;font-size:15px;cursor:pointer;font-family:inherit;}' +
+  '#bc-auth .go:hover{background:var(--twilight-slate);}' +
+  '#bc-auth .msg{min-height:18px;margin-top:10px;font-size:13px;font-weight:600;}' +
+  '#bc-auth .msg.err{color:#d64545;}#bc-auth .msg.ok{color:#2f9e44;}' +
+  '#bc-auth .foot{margin-top:12px;font-size:12px;color:var(--slate-gray);text-align:center;}';
+  var st2 = document.createElement('style'); st2.textContent = authCss; document.head.appendChild(st2);
+
+  var logged = !!session();
+  var auth = document.createElement('div');
+  auth.id = 'bc-auth'; auth.setAttribute('role', 'dialog'); auth.setAttribute('aria-modal', 'true');
+  auth.innerHTML =
+    '<div class="av" data-x></div>' +
+    '<div class="card">' +
+      '<button class="x" data-x aria-label="Close">&times;</button>' +
+      '<div class="brand">' + svg('M12 3 3 20h18L12 3Z', 20) + ' BASECAMP</div>' +
+      '<h3 id="bc-au-title">Welcome back</h3>' +
+      '<p class="sub" id="bc-au-sub">Sign in to save your picks and check out faster.</p>' +
+      '<div class="tabs"><button data-tab="in" class="on">Sign in</button><button data-tab="up">Create account</button></div>' +
+      '<div class="soc">' +
+        '<button data-soc="Google"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="#EA4335" d="M12 10.2v3.9h5.5c-.24 1.4-1.66 4.1-5.5 4.1a6.2 6.2 0 0 1 0-12.4c1.9 0 3.1.8 3.8 1.5l2.6-2.5C16.7 2.9 14.6 2 12 2A10 10 0 1 0 22 12c0-.7-.1-1.2-.2-1.8H12z"/></svg> Continue with Google</button>' +
+        '<button data-soc="GitHub"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.1-1.47-1.1-1.47-.9-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.9 1.53 2.36 1.09 2.94.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.5 9.5 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10 10 0 0 0 12 2Z"/></svg> Continue with GitHub</button>' +
+      '</div>' +
+      '<div class="or">or</div>' +
+      '<form id="bc-au-form" novalidate>' +
+        '<div id="bc-name-wrap" hidden><label>Full name</label><input id="bc-name" type="text" autocomplete="name" placeholder="Your name"></div>' +
+        '<label>Email</label><input id="bc-email" type="email" autocomplete="email" placeholder="you@example.com">' +
+        '<label>Password</label><input id="bc-pass" type="password" autocomplete="current-password" placeholder="••••••••">' +
+        '<button class="go" type="submit" id="bc-go">Sign in</button>' +
+        '<div class="msg" id="bc-msg"></div>' +
+      '</form>' +
+      '<div class="foot">Front-end demo — your account is saved on this device.</div>' +
+    '</div>';
+  document.body.appendChild(auth);
+
+  var mode = 'in';
+  var nameWrap = auth.querySelector('#bc-name-wrap'), msg = auth.querySelector('#bc-msg');
+  function setMode(m) {
+    mode = m;
+    auth.querySelectorAll('.tabs button').forEach(function (b) { b.classList.toggle('on', b.dataset.tab === m); });
+    nameWrap.hidden = m !== 'up';
+    auth.querySelector('#bc-au-title').textContent = m === 'up' ? 'Create your account' : 'Welcome back';
+    auth.querySelector('#bc-au-sub').textContent = m === 'up' ? 'Join Basecamp to save your picks and check out faster.' : 'Sign in to save your picks and check out faster.';
+    auth.querySelector('#bc-go').textContent = m === 'up' ? 'Create account' : 'Sign in';
+    auth.querySelector('#bc-pass').setAttribute('autocomplete', m === 'up' ? 'new-password' : 'current-password');
+    msg.textContent = ''; msg.className = 'msg';
+  }
+  function openAuth() {
+    if (session()) { // already logged in -> offer sign out
+      if (confirm('Signed in as ' + getName() + '. Sign out?')) { try { localStorage.removeItem('bc-session'); localStorage.setItem('bc-user', ''); } catch (e) {} refreshGreeting(); }
+      return;
+    }
+    setMode('in'); auth.classList.add('on'); setTimeout(function () { auth.querySelector('#bc-email').focus(); }, 40);
+  }
+  function closeAuth() { auth.classList.remove('on'); }
+  window.__bcOpenAuth = openAuth;
+
+  auth.querySelectorAll('[data-x]').forEach(function (b) { b.addEventListener('click', closeAuth); });
+  auth.querySelectorAll('.tabs button').forEach(function (b) { b.addEventListener('click', function () { setMode(b.dataset.tab); }); });
+  auth.querySelectorAll('[data-soc]').forEach(function (b) { b.addEventListener('click', function () { msg.className = 'msg'; msg.textContent = 'Social sign-in needs a backend — use email for now.'; }); });
+
+  auth.querySelector('#bc-au-form').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var email = auth.querySelector('#bc-email').value.trim().toLowerCase();
+    var pass = auth.querySelector('#bc-pass').value;
+    var name = (auth.querySelector('#bc-name').value || '').trim();
+    if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) { msg.className = 'msg err'; msg.textContent = 'Please enter a valid email.'; return; }
+    if (pass.length < 6) { msg.className = 'msg err'; msg.textContent = 'Password must be at least 6 characters.'; return; }
+    var list = accounts();
+    if (mode === 'up') {
+      if (!name) { msg.className = 'msg err'; msg.textContent = 'Please enter your name.'; return; }
+      if (list.some(function (a) { return a.email === email; })) { msg.className = 'msg err'; msg.textContent = 'An account with this email already exists.'; return; }
+      list.push({ name: name, email: email, pass: enc(pass) }); saveAccounts(list);
+      setUser(name, email);
+      msg.className = 'msg ok'; msg.textContent = 'Account created! Welcome, ' + name + '.';
+      setTimeout(closeAuth, 900);
+    } else {
+      var acc = list.find(function (a) { return a.email === email && a.pass === enc(pass); });
+      if (!acc) { msg.className = 'msg err'; msg.textContent = 'Wrong email or password.'; return; }
+      setUser(acc.name, acc.email);
+      msg.className = 'msg ok'; msg.textContent = 'Welcome back, ' + acc.name + '!';
+      setTimeout(closeAuth, 700);
+    }
   });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeAuth(); });
+
+  // Wire any account trigger on the page (e.g. the nav account icon on the home page)
+  var acctIcon = document.querySelector('a[aria-label="Account"]');
+  if (acctIcon) acctIcon.addEventListener('click', function (e) { e.preventDefault(); openAuth(); });
 })();
