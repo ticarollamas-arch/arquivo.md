@@ -221,4 +221,57 @@
   // Wire any account trigger on the page (e.g. the nav account icon on the home page)
   var acctIcon = document.querySelector('a[aria-label="Account"]');
   if (acctIcon) acctIcon.addEventListener('click', function (e) { e.preventDefault(); openAuth(); });
+
+  /* ===================== Touchpad interactions ===================== */
+  // 1) Season carousel: two-finger horizontal scroll + click/drag to change season
+  (function () {
+    var stage = document.getElementById('cfStage');
+    var next = document.getElementById('cfNext'), prev = document.getElementById('cfPrev');
+    if (!stage || !next || !prev) return;
+    var area = stage.closest('.cf-inner') || stage.parentElement;
+    var lock = false;
+    area.addEventListener('wheel', function (e) {
+      if (Math.abs(e.deltaX) > Math.abs(e.deltaY) + 2) {
+        e.preventDefault();
+        if (lock) return; lock = true; setTimeout(function () { lock = false; }, 360);
+        (e.deltaX > 0 ? next : prev).click();
+      }
+    }, { passive: false });
+    var down = false, sx = 0, moved = false;
+    stage.addEventListener('pointerdown', function (e) { down = true; sx = e.clientX; moved = false; stage.setPointerCapture && stage.setPointerCapture(e.pointerId); });
+    stage.addEventListener('pointermove', function (e) {
+      if (!down) return; var dx = e.clientX - sx;
+      if (Math.abs(dx) > 55 && !moved) { moved = true; (dx < 0 ? next : prev).click(); }
+    });
+    stage.addEventListener('pointerup', function () { down = false; });
+    stage.addEventListener('pointercancel', function () { down = false; });
+  })();
+
+  // 2) Zoomable product photos: pinch (two-finger) zooms the image, move pans,
+  //    double-click toggles 2x. Normal two-finger scroll still scrolls the page.
+  (function () {
+    var frames = document.querySelectorAll('.gal .main, .fx-media .frame');
+    Array.prototype.forEach.call(frames, function (f) {
+      var img = f.querySelector('img'); if (!img) return;
+      f.style.overflow = 'hidden'; f.style.cursor = 'zoom-in';
+      img.style.transition = 'transform .12s ease-out'; img.style.willChange = 'transform';
+      var scale = 1;
+      function apply(ox, oy) {
+        img.style.transformOrigin = (ox != null ? ox + '% ' + oy + '%' : 'center');
+        img.style.transform = 'scale(' + scale + ')';
+        f.style.cursor = scale > 1 ? 'zoom-out' : 'zoom-in';
+      }
+      function at(e) { var r = f.getBoundingClientRect(); return [(e.clientX - r.left) / r.width * 100, (e.clientY - r.top) / r.height * 100]; }
+      f.addEventListener('wheel', function (e) {
+        if (!e.ctrlKey) return;              // pinch gesture only; plain scroll passes through
+        e.preventDefault();
+        var p = at(e);
+        scale = Math.min(4, Math.max(1, scale - e.deltaY * 0.012));
+        apply(p[0], p[1]);
+      }, { passive: false });
+      f.addEventListener('mousemove', function (e) { if (scale > 1) { var p = at(e); apply(p[0], p[1]); } });
+      f.addEventListener('mouseleave', function () { scale = 1; apply(); });
+      f.addEventListener('dblclick', function (e) { var p = at(e); scale = scale > 1 ? 1 : 2.2; apply(p[0], p[1]); });
+    });
+  })();
 })();
