@@ -24,9 +24,9 @@
   function getName() { try { var n = localStorage.getItem('bc-user'); return (n === null ? 'Arthur' : n).trim(); } catch (e) { return 'Arthur'; } }
 
   var css = '' +
-  '#bc-tab{position:fixed;left:0;top:50%;transform:translateY(-50%);z-index:55;width:32px;height:54px;border:1px solid var(--cloud-veil);border-left:0;border-radius:0 12px 12px 0;background:var(--paper-white);color:var(--midcurrent-navy);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;cursor:pointer;box-shadow:3px 0 14px rgba(0,0,0,.12);transition:transform .2s,background .2s;}' +
-  '#bc-tab:hover{transform:translateY(-50%) translateX(2px);}' +
-  '#bc-tab span{display:block;width:15px;height:2px;border-radius:2px;background:currentColor;}' +
+  '#bc-tab{position:fixed;left:12px;top:12px;z-index:58;width:42px;height:42px;border:1px solid var(--cloud-veil);border-radius:12px;background:var(--paper-white);color:var(--midcurrent-navy);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;cursor:pointer;box-shadow:0 4px 16px rgba(0,0,0,.16);transition:transform .15s,background .2s;}' +
+  '#bc-tab:hover{transform:scale(1.06);}' +
+  '#bc-tab span{display:block;width:17px;height:2px;border-radius:2px;background:currentColor;}' +
   '#bc-scrim{position:fixed;inset:0;z-index:59;background:rgba(0,0,0,.45);opacity:0;pointer-events:none;transition:opacity .3s;}' +
   '#bc-scrim.on{opacity:1;pointer-events:auto;}' +
   '#bc-drawer{position:fixed;top:0;left:0;height:100vh;width:280px;max-width:84vw;z-index:60;background:var(--paper-white);border-right:1px solid var(--cloud-veil);' +
