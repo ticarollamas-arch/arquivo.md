@@ -415,7 +415,141 @@
       </div>
     </section>
 
+    <!-- Flagship / best-in-class product features (ported from features-2) -->
+    <style>
+      .fx{background:var(--morning-mist);}
+      .fx .wrapx{max-width:1100px;margin:0 auto;padding:0 24px;}
+      .fx .fx-head{max-width:660px;margin:0 auto 30px;text-align:center;}
+      .fx .fx-badge{display:inline-block;font-size:11px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:#0a0a0c;background:linear-gradient(135deg,#37b24d,#f08c00);padding:5px 14px;border-radius:9999px;margin-bottom:14px;}
+      .fx .fx-head h2{font-weight:900;font-size:clamp(28px,4vw,40px);line-height:1.1;margin:0 0 10px;}
+      .fx .fx-head p{color:var(--slate-gray);margin:0;}
+      .fx .fx-row{display:flex;flex-direction:column;gap:26px;padding:44px 0;border-top:1px solid var(--cloud-veil);}
+      @media(min-width:860px){.fx .fx-row{flex-direction:row;align-items:center;gap:56px;}.fx .fx-row.rev{flex-direction:row-reverse;}}
+      .fx .fx-col{flex:1;min-width:0;}
+      .fx .eyebrow{display:flex;align-items:center;gap:9px;color:var(--slate-gray);font-size:11px;font-weight:800;letter-spacing:2px;text-transform:uppercase;}
+      .fx .eyebrow .ic{width:26px;height:26px;border-radius:8px;border:1px solid var(--cloud-veil);display:flex;align-items:center;justify-content:center;color:#3fbf57;}
+      .fx .fx-col h3{font-weight:900;font-size:clamp(22px,3vw,30px);line-height:1.15;margin:14px 0 8px;}
+      .fx .fx-col .lead{color:var(--slate-gray);line-height:1.6;margin:0 0 18px;}
+      .fx .fx-specs{list-style:none;padding:0;margin:0 0 18px;display:grid;gap:10px;}
+      .fx .fx-specs li{display:flex;gap:10px;align-items:flex-start;font-size:14px;color:var(--slate-gray);}
+      .fx .fx-specs .ck{width:20px;height:20px;flex:none;border-radius:6px;background:linear-gradient(135deg,#37b24d,#f08c00);color:#0a0a0c;display:flex;align-items:center;justify-content:center;margin-top:1px;}
+      .fx .fx-specs b{color:var(--midcurrent-navy);font-weight:700;}
+      .fx .fx-meta{display:flex;align-items:center;gap:14px;flex-wrap:wrap;border-top:1px solid var(--cloud-veil);padding-top:16px;margin-bottom:18px;}
+      .fx .fx-meta .stars{display:inline-flex;gap:2px;}
+      .fx .fx-meta .rt{font-size:13px;color:var(--slate-gray);}
+      .fx .fx-meta .hero{margin-left:auto;text-align:right;}
+      .fx .fx-meta .hero .v{font-size:20px;font-weight:900;line-height:1;}
+      .fx .fx-meta .hero .l{font-size:10px;color:var(--slate-gray);text-transform:uppercase;letter-spacing:1px;}
+      .fx .fx-buy{display:inline-flex;align-items:center;gap:8px;padding:13px 22px;border-radius:9999px;background:linear-gradient(135deg,#37b24d,#f08c00);color:#0a0a0c;font-weight:800;font-size:15px;text-decoration:none;transition:filter .2s;}
+      .fx .fx-buy:hover{filter:brightness(1.06);}
+      .fx .fx-buy .pz{margin-left:4px;padding-left:12px;border-left:1px solid rgba(0,0,0,.28);}
+      .fx .fx-media{flex:1;}
+      .fx .fx-media .frame{position:relative;aspect-ratio:4/3;border-radius:16px;overflow:hidden;border:1px solid var(--cloud-veil);box-shadow:0 30px 60px -30px rgba(0,0,0,.7);}
+      .fx .fx-media img{width:100%;height:100%;object-fit:cover;}
+      .fx .fx-media .cap{position:absolute;left:0;right:0;bottom:0;display:flex;align-items:center;gap:8px;padding:10px 14px;background:rgba(10,10,12,.62);backdrop-filter:blur(6px);color:#e6e7ea;font-size:12px;font-weight:600;}
+      .fx .fx-media .cap .badge2{margin-left:auto;font-size:10px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:#0a0a0c;background:linear-gradient(135deg,#37b24d,#f08c00);padding:3px 10px;border-radius:9999px;}
+    </style>
+    <section class="fx" style="padding:64px 0;">
+      <div class="wrapx">
+        <div class="fx-head reveal">
+          <span class="fx-badge">Best in class</span>
+          <h2>The flagship gear we stake our name on.</h2>
+          <p>Our highest-tier pick in each category — built for the finish, the structure, and the seasons. The best of the best.</p>
+        </div>
 
+        <!-- Backpacks -->
+        <div class="fx-row reveal">
+          <div class="fx-col">
+            <div class="eyebrow"><span class="ic"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M8 7V6a4 4 0 0 1 8 0v1"/><path d="M6 7h12v13H6z"/><path d="M9 12h6"/></svg></span> Backpacks</div>
+            <h3>Summit Carbon 65 Expedition Pack</h3>
+            <p class="lead">Our top-tier hauler — a carbon-framed 65-liter built to carry heavy loads in comfort across multi-week expeditions.</p>
+            <ul class="fx-specs">
+              <li><span class="ck">&#10003;</span><span><b>Frame:</b> Carbon-composite internal frame, 25 kg rated load</span></li>
+              <li><span class="ck">&#10003;</span><span><b>Suspension:</b> Anti-gravity ventilated mesh back panel</span></li>
+              <li><span class="ck">&#10003;</span><span><b>Fabric:</b> 210D Robic ripstop nylon with Dyneema base</span></li>
+              <li><span class="ck">&#10003;</span><span><b>Access:</b> Top-load + front U-zip + bottom sleeping-bag zip</span></li>
+              <li><span class="ck">&#10003;</span><span><b>Weather:</b> Roll-top collar and integrated rain cover</span></li>
+              <li><span class="ck">&#10003;</span><span><b>Hipbelt:</b> Thermo-molded, interchangeable sizing</span></li>
+            </ul>
+            <div class="fx-meta">
+              <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="rt">4.9 · 2,140 reviews</span>
+              <span class="hero"><span class="v">25 kg</span><br><span class="l">Rated load</span></span>
+            </div>
+            <a class="fx-buy" href="#" rel="sponsored nofollow noopener" target="_blank">Buy on Amazon <span class="pz">$349</span></a>
+          </div>
+          <div class="fx-media"><div class="frame"><img src="images/products/backpack.jpg" alt="Summit Carbon 65 Expedition Pack" loading="lazy"><div class="cap">Expedition Pack · field-tested<span class="badge2">Flagship</span></div></div></div>
+        </div>
+
+        <!-- Sleeping Bags -->
+        <div class="fx-row rev reveal">
+          <div class="fx-col">
+            <div class="eyebrow"><span class="ic"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3h7a4 4 0 0 1 4 4v14H7z"/><path d="M7 8h11"/></svg></span> Sleeping Bags</div>
+            <h3>SubZero 850 Expedition Down Bag</h3>
+            <p class="lead">850-fill goose down and a full draft system for genuine sub-zero nights high on the mountain.</p>
+            <ul class="fx-specs">
+              <li><span class="ck">&#10003;</span><span><b>Fill:</b> 850+ fill-power RDS-certified goose down</span></li>
+              <li><span class="ck">&#10003;</span><span><b>Temp (EN 13537):</b> Comfort 5°F · Limit -13°F · Extreme -40°F</span></li>
+              <li><span class="ck">&#10003;</span><span><b>Baffles:</b> Trapezoidal box-wall, differential cut</span></li>
+              <li><span class="ck">&#10003;</span><span><b>Shell:</b> 10D Pertex Quantum with hydrophobic DWR</span></li>
+              <li><span class="ck">&#10003;</span><span><b>Zip:</b> Full-length YKK with anti-snag draft tube</span></li>
+              <li><span class="ck">&#10003;</span><span><b>Packed:</b> 8.7 × 15 in compression sack · 1.4 kg</span></li>
+            </ul>
+            <div class="fx-meta">
+              <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="rt">4.8 · 980 reviews</span>
+              <span class="hero"><span class="v">-40°F</span><br><span class="l">Extreme rating</span></span>
+            </div>
+            <a class="fx-buy" href="#" rel="sponsored nofollow noopener" target="_blank">Buy on Amazon <span class="pz">$549</span></a>
+          </div>
+          <div class="fx-media"><div class="frame"><img src="images/gallery/camp2.jpg" alt="SubZero 850 Expedition Down Bag" loading="lazy"><div class="cap">Expedition down · sub-zero<span class="badge2">Flagship</span></div></div></div>
+        </div>
+
+        <!-- Coolers -->
+        <div class="fx-row reveal">
+          <div class="fx-col">
+            <div class="eyebrow"><span class="ic"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h18v11a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1z"/><path d="M3 8l2-4h14l2 4"/><path d="M9 8v3M15 8v3"/></svg></span> Coolers</div>
+            <h3>Glacier 65 Rotomolded Cooler</h3>
+            <p class="lead">A bear-tough rotomolded ice vault that keeps ice for up to 10 days in the backcountry.</p>
+            <ul class="fx-specs">
+              <li><span class="ck">&#10003;</span><span><b>Construction:</b> One-piece roto-molded polyethylene shell</span></li>
+              <li><span class="ck">&#10003;</span><span><b>Insulation:</b> 3-inch pressure-injected polyurethane foam</span></li>
+              <li><span class="ck">&#10003;</span><span><b>Ice retention:</b> Up to 10 days, field-tested</span></li>
+              <li><span class="ck">&#10003;</span><span><b>Certification:</b> IGBC grizzly bear-resistant</span></li>
+              <li><span class="ck">&#10003;</span><span><b>Seal:</b> Freezer-grade silicone gasket + T-latch closures</span></li>
+              <li><span class="ck">&#10003;</span><span><b>Capacity:</b> 65 qt · 78 cans at a 2:1 ice ratio</span></li>
+            </ul>
+            <div class="fx-meta">
+              <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="rt">4.9 · 3,410 reviews</span>
+              <span class="hero"><span class="v">10-day</span><br><span class="l">Ice retention</span></span>
+            </div>
+            <a class="fx-buy" href="#" rel="sponsored nofollow noopener" target="_blank">Buy on Amazon <span class="pz">$325</span></a>
+          </div>
+          <div class="fx-media"><div class="frame"><img src="images/products/cooler.jpg" alt="Glacier 65 Rotomolded Cooler" loading="lazy"><div class="cap">Rotomolded · bear-resistant<span class="badge2">Flagship</span></div></div></div>
+        </div>
+
+        <!-- Tents -->
+        <div class="fx-row rev reveal">
+          <div class="fx-col">
+            <div class="eyebrow"><span class="ic"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20 12 5l9 15Z"/><path d="M12 5v15"/></svg></span> Tents</div>
+            <h3>Apex 4-Season Mountaineering Tent</h3>
+            <p class="lead">A geodesic 4-season fortress engineered for high wind, heavy snow load and full alpine storms.</p>
+            <ul class="fx-specs">
+              <li><span class="ck">&#10003;</span><span><b>Geometry:</b> 4-pole geodesic, fully freestanding</span></li>
+              <li><span class="ck">&#10003;</span><span><b>Poles:</b> DAC Featherlite NSL aluminum, 9.0 mm</span></li>
+              <li><span class="ck">&#10003;</span><span><b>Fly:</b> 20D ripstop nylon, 3,000 mm silicone/PU coating</span></li>
+              <li><span class="ck">&#10003;</span><span><b>Floor:</b> 30D nylon, 10,000 mm bathtub HH, taped seams</span></li>
+              <li><span class="ck">&#10003;</span><span><b>Wind rating:</b> Tested to 70 mph (113 km/h)</span></li>
+              <li><span class="ck">&#10003;</span><span><b>Livability:</b> 2-person, 2 vestibules, 30 + 18 sq ft</span></li>
+            </ul>
+            <div class="fx-meta">
+              <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="rt">4.8 · 640 reviews</span>
+              <span class="hero"><span class="v">70 mph</span><br><span class="l">Wind rated</span></span>
+            </div>
+            <a class="fx-buy" href="#" rel="sponsored nofollow noopener" target="_blank">Buy on Amazon <span class="pz">$629</span></a>
+          </div>
+          <div class="fx-media"><div class="frame"><img src="images/products/tent.jpg" alt="Apex 4-Season Mountaineering Tent" loading="lazy"><div class="cap">4-season geodesic · storm-proof<span class="badge2">Flagship</span></div></div></div>
+        </div>
+      </div>
+    </section>
 
     <!-- Buyer guide: temperature ratings -->
     <section class="guide">
